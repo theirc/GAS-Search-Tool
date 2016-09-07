@@ -1,0 +1,17 @@
+{
+  "name": "search",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Rey Rodrigues <rodriguesreynaldo@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
