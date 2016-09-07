@@ -19,6 +19,9 @@ class AsylumOfficeDetails(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Asylum Office Details"
+
 
 class AppointmentSchedule(models.Model):
     registration_number = models.CharField(max_length=100, null=True, blank=True)
