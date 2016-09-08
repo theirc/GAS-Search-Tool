@@ -11,7 +11,7 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
             $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
         };
     })
-    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider, staticUrl) {
+    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
 
@@ -19,9 +19,8 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
         $urlRouterProvider.otherwise('/');
-
         $translateProvider.useStaticFilesLoader({
-            'prefix': staticUrl + 'locale/',
+            'prefix': 'static/locale/',
             'suffix': '.json'
         })
         .useCookieStorage()
