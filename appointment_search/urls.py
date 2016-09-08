@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-import views
+from appointment_search import views
 
 urlpatterns = [
     url(r'search$', views.SearchJSONView.as_view(), ),
