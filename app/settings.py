@@ -85,14 +85,6 @@ DATABASES = {
     }
 }
 
-
-LANGUAGES = (
-    ('en', _('English')),
-    ('ar', _('Arabic')),
-    ('el', _('Greek')),
-    ('fa', _('Farsi')),
-)
-
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 

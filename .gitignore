@@ -1,7 +1,8 @@
 /static/
 node_modules/
 bower_components/
-
+localsettings.py
+.sass-cache
 db.sqlite3
 .idea/
 .DS_Store
