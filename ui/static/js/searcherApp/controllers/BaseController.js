@@ -1,5 +1,6 @@
-angular.module('searcherApp').controller('BaseController', function ($rootScope, LoadingOverlayService) {
+angular.module('searcherApp').controller('BaseController', function ($rootScope, LoadingOverlayService, languages) {
     var vm = this;
+    vm.languages = languages;
 
     var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function () {
         LoadingOverlayService.start();

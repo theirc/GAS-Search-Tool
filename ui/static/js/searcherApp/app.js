@@ -1,17 +1,17 @@
 angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalprecht.translate'])
-    .run(function($rootScope, $state) {
-        var unregister = $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+    .run(function ($rootScope, $state) {
+        var unregister = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.previousStateName = fromState.name;
             $rootScope.previousStateParams = fromParams;
         });
-        $rootScope.$on('$destroy', function() {
+        $rootScope.$on('$destroy', function () {
             unregister();
         });
-        $rootScope.backToPreviousState = function() {
+        $rootScope.backToPreviousState = function () {
             $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
         };
     })
-    .config(function($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider, staticUrl) {
         $interpolateProvider.startSymbol('{$');
         $interpolateProvider.endSymbol('$}');
 
@@ -20,12 +20,13 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
 
         $urlRouterProvider.otherwise('/');
         $translateProvider.useStaticFilesLoader({
-            'prefix': 'static/locale/',
+            'prefix': staticUrl + 'locale/',
             'suffix': '.json'
         })
-        .useCookieStorage()
-        .preferredLanguage('en')
-        .fallbackLanguage('en');
+            .useCookieStorage()
+            .preferredLanguage('en')
+            .fallbackLanguage('en')
+            .useSanitizeValueStrategy('sanitize');
 
         $stateProvider
             .state('home', {
