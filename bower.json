@@ -13,5 +13,21 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "2.2.2",
+    "bootstrap": "3.3.7",
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angular-cookies": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
+    "components-font-awesome": "^4.6.3",
+    "is-loading": "^1.0.6",
+    "angular-translate": "^2.11.0",
+    "angular-translate-loader-static-files": "^2.11.1",
+    "angular-translate-storage-cookie": "^2.11.1"
+  },
+  "resolutions": {
+    "angular": "^1.5.8"
+  }
 }

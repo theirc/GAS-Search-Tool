@@ -1,4 +1,7 @@
-static/
+/static/
+node_modules/
+bower_components/
+
 db.sqlite3
 .idea/
 .DS_Store
