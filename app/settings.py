@@ -117,6 +117,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = (
+    ('en', _('English')),
+    ('el', _('Greek')),
+    ('ar', _('Arabic')),
+    ('fa', _('Farsi')),
+    ('kmr', _('Kurmanji')),
+    ('ckb', _('Sorani')),
+    ('prs', _('Dari')),
+    ('ur', _('Urdu')),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
