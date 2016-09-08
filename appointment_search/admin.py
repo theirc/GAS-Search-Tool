@@ -12,5 +12,22 @@ class AsylumOfficeAdmin(admin.ModelAdmin):
         DetailsInline
     ]
 
+admin.site.register(
+    models.AppointmentSchedule,
+    list_display=[
+        'registration_number',
+        'date',
+        'office',
+    ],
+    search_fields=[
+        'registration_number',
+    ],
+    list_filter=[
+        'date',
+        'office',
+    ],
+    list_select_related=['office']
+)
 
-admin.site.register(models.AppointmentSchedule, admin.ModelAdmin)
+
+#admin.site.register(models.AppointmentSchedule, admin.ModelAdmin)
