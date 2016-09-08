@@ -1,0 +1,67 @@
+{% load static %}
+{% load compress %}
+{% load djng_tags %}
+
+<!DOCTYPE html>
+<html ng-app="searcherApp" ng-controller="BaseController as baseController">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <script type="text/javascript" src='{% static 'jquery/dist/jquery.js' %}'></script>
+    <script type="text/javascript" src='{% static 'bootstrap/dist/js/bootstrap.min.js' %}'></script>
+
+    <script type="text/javascript" src='{% static 'angular/angular.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-ui-router/release/angular-ui-router.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-cookies/angular-cookies.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-sanitize/angular-sanitize.min.js' %}'></script>
+    <script type="text/javascript" src="{% static 'djng/js/django-angular.js' %}"></script>
+    <script type="text/javascript" src='{% static 'leaflet/dist/leaflet.js' %}'></script>
+    <script type="text/javascript" src='{% static 'is-loading/jquery.isloading.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'leaflet.markercluster/dist/leaflet.markercluster.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-translate/angular-translate.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-translate-loader-static-files/angular-translate-loader-static-files.js' %}'></script>
+    <script type="text/javascript" src='{% static 'angular-translate-storage-cookie/angular-translate-storage-cookie.min.js' %}'></script>
+
+    {% compress js %}
+        <script type="text/javascript" src='{% static 'js/searcherApp/app.js' %}'></script>
+
+        <script type="text/javascript" src='{% static 'js/searcherApp/services/LoadingOverlayService.js' %}'></script>
+
+        <script type="text/javascript" src='{% static 'js/searcherApp/controllers/BaseController.js' %}'></script>
+
+        <script type="text/javascript" src='{% static 'js/searcherApp/directives/languageChoice.js' %}'></script>
+    {% endcompress %}
+
+    <script type="text/javascript">
+        angular.module('searcherApp').constant('staticUrl', '{{ STATIC_URL }}');
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" media="screen,projection">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
+    {% endcompress %}
+
+    {% block additional-requirements %}{% endblock %}
+
+    <title>{% block title %}{$ 'APP_NAME' | translate $}{% endblock title %}</title>
+</head>
+<body>
+    {% csrf_token %}
+    {% block body %}
+        {% include 'navigation.html' %}
+        <div class="container">
+        {% block content %}{% endblock content %}
+        </div>
+    {% endblock body %}
+
+
+</body>
+</html>
