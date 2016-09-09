@@ -1,3 +1,7 @@
 {
-  "APP_NAME": "Searcher App"
+  "APP_NAME": "Searcher App",
+  "SEARCHING_FOR": "What are you searching for?",
+  "APPOINTMENT_DATES": "Appointment dates",
+  "SELECT_ONE": "(Select one of the choices below to proceed)",
+  "MORE_INFORMATION": "More Information Soon"
 }

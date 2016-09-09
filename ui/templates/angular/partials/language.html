@@ -5,4 +5,5 @@
 </div>
 <language-choice ng-repeat="language in baseController.languages track by $index"
                  language="language"
-                 change-language="baseController.changeLanguage(language)"></language-choice>
+                 change-language="baseController.changeLanguage(language)"
+                 navigate-to="baseController.navigateTo('searching')"></language-choice>

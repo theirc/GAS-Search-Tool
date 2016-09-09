@@ -1,5 +1,5 @@
 angular.module('searcherApp').controller('BaseController', function ($rootScope, LoadingOverlayService, $state,
-                                                                     languages, $translate, $cookies, $templateCache) {
+                                                                     languages, $translate, $cookies) {
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.languages = languages;
@@ -27,11 +27,12 @@ angular.module('searcherApp').controller('BaseController', function ($rootScope,
     };
 
     vm.changeLanguage = function (language) {
-        console.log('clicked');
         vm.isRTL = !(language.code === 'en' || language.code === 'el');
         vm.language = language;
         $translate.use(language.code);
-        $templateCache.removeAll();
-        $state.reload();
+    };
+
+    vm.navigateTo = function (name) {
+        $state.go(name);
     };
 });
