@@ -12,13 +12,5 @@
     <img src="http://placekitten.com/g/400/300"/>
 </div>
 <div class="row text-center">
-    <div>
-        <label>{$ 'ENTER_NUMBER' | translate $}</label>
-        <input type="number" name="registrationNumber" class="form-control" ng-model="registrationNumber" required>
-    </div>
-    <div class="form-group">
-        <label>{$ 'CONFIRM_NUMBER' | translate $}</label>
-        <input type="number" name="confirmRegistrationNumber" class="form-control" ng-model="confirmRegistrationNumber" required>
-    </div>
-    <input class="btn" type="submit" ng-click="ctrl.submit()" value="{$ 'SUBMIT' | translate $}" />
+<input-form></input-form>
 </div>
