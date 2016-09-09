@@ -20,5 +20,11 @@
   "KURMANJI": "کورمانجی",
   "SORANI": "سۆرانی",
   "DARI": "دری",
-  "URDU": "اُردُو"
+  "URDU": "اُردُو",
+
+  "FIND_REGISTRATION_NUMBER": "This is where you find your registration number",
+  "ENTER_INFO_BELOW": "(Enter information below)",
+  "ENTER_NUMBER": "Enter your registration number",
+  "CONFIRM_NUMBER": "Confirm your registration number",
+  "SUBMIT": "Submit"
 }

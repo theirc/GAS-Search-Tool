@@ -28,14 +28,17 @@
         <script type="text/javascript" src='{% static 'js/searcherApp/app.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/searcherApp/services/LoadingOverlayService.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/searcherApp/services/AppointmentService.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/searcherApp/controllers/BaseController.js' %}'></script>
+        <script type="text/javascript" src='{% static 'js/searcherApp/controllers/InputController.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/searcherApp/directives/languageChoice.js' %}'></script>
     {% endcompress %}
 
     <script type="text/javascript">
         angular.module('searcherApp').constant('staticUrl', '{{ STATIC_URL }}');
+        angular.module('searcherApp').constant('apiUrl', '{{ API_URL }}');
         angular.module('searcherApp').constant('languages', {% autoescape off %}{{ LANGUAGES }}{% endautoescape %});
 
     </script>
