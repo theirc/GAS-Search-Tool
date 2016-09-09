@@ -2,6 +2,76 @@ $background-color: #FFFFFF;
 $navbar-color: #FFFFFF;
 $view-header-color: #EEEEEE;
 $button-color: #E2E2E2;
+$footer-color: #626262;
+$text-color: #000000;
+$text-color-muted: #222222;
+$accent-color: #276698;
+$text-reversed-color: #f5f5f5;
+$text-reversed-color-muted: #E5E5E5;
+
+
+// bootstrap responsive layout breakpoints
+$screen-sm-min: 768px;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-md-min: 992px;
+$screen-sm-max: ($screen-md-min - 1);
+$screen-lg-min: 1200px;
+$screen-md-max: ($screen-lg-min - 1);
+
+@mixin transition-mixin($property, $duration, $ease) {
+  -webkit-transiton: $property #{$duration}s $ease;
+  -moz-transition: $property #{$duration}s $ease;
+  -ms-transition: $property #{$duration}s $ease;
+  -o-transition: $property #{$duration}s $ease;
+  -transition: $property #{$duration}s $ease;
+  transition: $property #{$duration}s $ease;
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin align-items($value) {
+  -ms-flex-align: $value;
+  -webkit-box-align: $value;
+  align-items: $value;
+  -webkit-align-items: $value;
+}
+
+@mixin flex($value) {
+  -webkit-box-flex: $value;
+  -webkit-flex: $value;
+  -ms-flex: $value;
+  flex: $value;
+}
+
+@mixin justify-content($value) {
+  justify-content: $value;
+  -webkit-justify-content: $value;
+  -webkit-box-pack: $value;
+}
+
+@mixin flex-direction($value) {
+  @if $value == 'column' {
+    -webkit-box-orient: vertical;
+  } @else {
+    -webkit-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $value;
+  -ms-flex-direction: $value;
+  flex-direction: $value;
+}
+
+@mixin flex-wrap($value) {
+  flex-wrap: $value;
+  -webkit-flex-wrap: $value;
+  -ms-flex-wrap: $value;
+
+}
 
 * {
   padding: 0;
@@ -12,6 +82,10 @@ body, html {
   width: 100%;
   height: 100%;
   background-color: $background-color;
+}
+body {
+  height: 100%;
+  min-height: 100%;
 }
 
 .navbar-default {
@@ -43,17 +117,47 @@ body, html {
 
 .language-choice-button-container {
   margin-top: 15px;
+  @media (max-width: $screen-xs-max) {
+    padding: 0 5px;
+  }
 }
 
 .language-choice-button {
-  background-color: $button-color;
+  @include transition-mixin(background-color, 0.1, linear);
+  border: 3px solid $accent-color;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 20px;
   &:hover {
-    background-color: darken($button-color, 5%);
+    background-color: darken($button-color, 1%);
+  }
+}
+
+.wrapper {
+  min-height: 100%;
+}
+footer {
+  padding-top: 10px;
+  clear: both;
+  position: relative;
+  background-color: $footer-color;
+  color: $text-reversed-color;
+  height: 80px;
+  margin-top: -80px;
+  p {
+    text-transform: uppercase;
+    margin: 0;
+  }
+  a {
+    display: block;
+    color: $text-reversed-color-muted;
+    &:hover {
+      color: lighten($text-reversed-color-muted, 5%);
+      text-decoration: underline;
+    }
   }
 }
 
