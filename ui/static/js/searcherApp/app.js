@@ -44,6 +44,14 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
             })
             .state('results', {
                 url: '/search/:appointmentId',
-                templateUrl: 'partials/results.html'
+                templateUrl: 'partials/results.html',
+                controller: 'ResultsController as ctrl',
+                resolve: {
+                    appointment: function (AppointmentService, $stateParams) {
+                        return AppointmentService.getAppointment($stateParams.appointmentId).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
     });
