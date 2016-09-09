@@ -33,4 +33,8 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
                 url: '/',
                 templateUrl: 'partials/language.html'
             })
+            .state('searching', {
+                url: '/search',
+                templateUrl: 'partials/searching-for.html'
+            })
     });

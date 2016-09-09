@@ -115,7 +115,7 @@ body {
   }
 }
 
-.language-choice-button-container {
+.button-container {
   margin-top: 15px;
   @media (max-width: $screen-xs-max) {
     padding: 0 5px;
@@ -158,6 +158,19 @@ footer {
       color: lighten($text-reversed-color-muted, 5%);
       text-decoration: underline;
     }
+  }
+}
+
+.searching-for-choice-button {
+  background-color: $button-color;
+  color: $text-color !important;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: darken($button-color, 5%);
+    text-decoration: none;
   }
 }
 
@@ -362,3 +375,4 @@ footer {
     opacity: 0;
   }
 }
+

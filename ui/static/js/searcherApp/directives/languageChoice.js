@@ -3,7 +3,8 @@ angular.module('searcherApp').directive('languageChoice', function($state, $cook
         restrict: 'E',
         scope: {
             language: '=',
-            changeLanguage: '&'
+            changeLanguage: '&',
+            navigateTo: '&'
         },
         templateUrl: '/partials/directives/language-choice.html'
     };

@@ -6,11 +6,14 @@ from django.views.generic import TemplateView
 from ui.views import HomePageView
 
 directives_patterns = [
-    url(r'^language-choice.html$', TemplateView.as_view(template_name='angular/partials/directives/language-choice.html'), name='language-choice')
+    url(r'^language-choice.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/language-choice.html'), name='language-choice')
 ]
 
 partial_patterns = [
     url(r'^language.html$', TemplateView.as_view(template_name='angular/partials/language.html'), name='language'),
+    url(r'^searching-for.html$', TemplateView.as_view(template_name='angular/partials/searching-for.html'),
+        name='searching-for'),
     url(r'^directives/', include(directives_patterns, namespace='directives'))
 ]
 
