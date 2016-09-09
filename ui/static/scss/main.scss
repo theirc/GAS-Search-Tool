@@ -1,4 +1,7 @@
-$background-color: #EEEEEE;
+$background-color: #FFFFFF;
+$navbar-color: #FFFFFF;
+$view-header-color: #EEEEEE;
+$button-color: #E2E2E2;
 
 * {
   padding: 0;
@@ -11,6 +14,42 @@ body, html {
   background-color: $background-color;
 }
 
-.navbar-header > img {
-  max-height: 50px;
+.navbar-default {
+  background-color: $navbar-color;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  img {
+    max-height: 80px;
+    display: block;
+  }
+  .navbar-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+}
+.view-header {
+  padding: 10px 0;
+  background-color: $view-header-color;
+  display: block;
+  flex: 1;
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}
+.language-choice-button-container {
+  margin-top: 15px;
+}
+.language-choice-button {
+  background-color: $button-color;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: darken($button-color, 5%);
+  }
 }

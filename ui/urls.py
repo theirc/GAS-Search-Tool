@@ -11,6 +11,7 @@ directives_patterns = [
 
 partial_patterns = [
     url(r'^language.html$', TemplateView.as_view(template_name='angular/partials/language.html'), name='language'),
+    url(r'^directives/', include(directives_patterns, namespace='directives'))
 ]
 
 urlpatterns = [

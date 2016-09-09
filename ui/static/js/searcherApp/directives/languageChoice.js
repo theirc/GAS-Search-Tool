@@ -4,11 +4,6 @@ angular.module('searcherApp').directive('languageChoice', function($state, $cook
         scope: {
             language: '='
         },
-        templateUrl: '/partials/directives/language-choice.html',
-        link: function(scope) {
-            scope.chooseLangage = function(language) {
-                $cookies.put('language', language);
-            };
-        }
+        templateUrl: '/partials/directives/language-choice.html'
     };
 });

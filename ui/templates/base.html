@@ -36,6 +36,8 @@
 
     <script type="text/javascript">
         angular.module('searcherApp').constant('staticUrl', '{{ STATIC_URL }}');
+        angular.module('searcherApp').constant('languages', {% autoescape off %}{{ LANGUAGES }}{% endautoescape %});
+
     </script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" media="screen,projection">
