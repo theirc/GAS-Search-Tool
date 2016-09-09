@@ -5,6 +5,8 @@
     </a>
 </div>
 <h1 class="header-centered">{$ "RESULTS" | translate $}:</h1>
-<p>{$ 'APPOINTMENT_RESULTS' | translate:'{ registration_number: "XXXXXX", date: "DD/MM/YYYY", office: "GAS OFFICE NAME" }' $}</p>
+<p>{$ 'APPOINTMENT_RESULTS' | translate: {number: ctrl.appointment.registration_number,
+    date: ctrl.appointment.date, office: ctrl.appointment.office_name} $}
+</p>
 
 <a href="https://www.google.com/maps/place/{$ appointment.office.name $}">{$ 'CLICK_FOR_MAP' | translate $}</a>

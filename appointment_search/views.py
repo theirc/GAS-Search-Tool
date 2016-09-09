@@ -20,7 +20,7 @@ class SearchJSONView(JSONResponseMixin, View):
 
         appointment = appointment[0]
         return self.json_response({
-            'date': appointment.date,
+            'date': appointment.date.strftime("%x"),
             'registration_number': appointment.registration_number,
             'office_name': appointment.office.name,
             'office': {a.language: {'name': a.name, 'address': a.address} for a in
