@@ -1,14 +1,14 @@
 <form name="form">
     <div>
         <label>{$ 'ENTER_NUMBER' | translate $}</label>
-        <input type="number" name="registrationNumber" class="form-control" ng-model="registrationNumber" required>
+        <input type="text" name="registrationNumber" class="form-control" ng-model="registrationNumber" required />
     </div>
     <div class="form-group">
         <label>{$ 'CONFIRM_NUMBER' | translate $}</label>
-        <input type="number" name="confirmRegistrationNumber" class="form-control" ng-model="confirmRegistrationNumber" required />
-        <span class="help-block" data-ng-show="form.$valid && registrationNumber != confirmRegistrationNumber">Numbers not equal</span>
-
+        <input type="text" name="confirmRegistrationNumber" class="form-control" ng-model="confirmRegistrationNumber" required />
     </div>
+    <p class="text-danger" data-ng-show="form.$valid && registrationNumber != confirmRegistrationNumber">{$ 'NUMBERS_DONT_MATCH' | translate $}</p>
+    <p class="text-danger" data-ng-show="ctrl.noData">{$ 'INVALID_NUMBER' | translate $}</p>
     <input class="btn" type="submit" ng-disabled="form.$invalid || registrationNumber != confirmRegistrationNumber"
            ng-click="ctrl.submit()" value="{$ 'SUBMIT' | translate $}" />
 </form>

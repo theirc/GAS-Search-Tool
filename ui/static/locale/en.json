@@ -29,5 +29,7 @@
   "ENTER_INFO_BELOW": "(Enter information below)",
   "ENTER_NUMBER": "Enter your registration number",
   "CONFIRM_NUMBER": "Confirm your registration number",
-  "SUBMIT": "Submit"
+  "SUBMIT": "Submit",
+  "NUMBERS_DONT_MATCH": "Numbers don't match",
+  "INVALID_NUMBER": "Registration number not found"
 }

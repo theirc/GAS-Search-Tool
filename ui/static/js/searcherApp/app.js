@@ -47,7 +47,10 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
                 templateUrl: 'partials/results.html',
                 controller: 'ResultsController as ctrl',
                 resolve: {
-                    appointment: function (AppointmentService, $stateParams) {
+                    appointment: function (AppointmentService, $stateParams, $rootScope) {
+                        if ($rootScope.appointment){
+                            return $rootScope.appointment;
+                        }
                         return AppointmentService.getAppointment($stateParams.appointmentId).then(function (response) {
                             return response.data;
                         });
