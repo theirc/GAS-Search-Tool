@@ -5,9 +5,11 @@
 <div class="row button-container">
     <a class="searching-for-choice-button" ui-sref="input">
         <span>{$ 'APPOINTMENT_DATES' | translate $}</span>
-        <i class="glyphicon glyphicon-menu-right"></i>
+        <forward-button></forward-button>
     </a>
 </div>
-<div class="row button-container searching-for-choice-button">
-    <p>{$ 'MORE_INFORMATION' | translate $}</p>
+<div class="row button-container">
+    <div class="searching-for-choice-button no-hover">
+        {$ 'MORE_INFORMATION' | translate $}
+    </div>
 </div>

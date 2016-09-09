@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'djng',
     'appointment_search',
     'compressor',
-    'ui'
+    'ui',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'app.context_processors.languages',
                 'app.context_processors.static_url',
+                'app.context_processors.api_url'
             ],
         },
     },
@@ -153,6 +156,8 @@ COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'sass --scss {infile} {outfile}'),
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 if 'DATABASE_URL' in os.environ:

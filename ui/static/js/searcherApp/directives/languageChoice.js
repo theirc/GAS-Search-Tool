@@ -1,4 +1,4 @@
-angular.module('searcherApp').directive('languageChoice', function($state, $cookies) {
+angular.module('searcherApp').directive('languageChoice', function() {
     return {
         restrict: 'E',
         scope: {

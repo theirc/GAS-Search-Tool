@@ -16,7 +16,7 @@ def static_url(request):
     }
 
 
-def url(request):
+def api_url(request):
     return {
         'API_URL': settings.API_URL,
     }

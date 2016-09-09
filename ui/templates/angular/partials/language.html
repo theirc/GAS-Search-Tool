@@ -4,7 +4,10 @@
     <p>{$ "SELECT_LANGUAGE_AR" | translate $}</p>
     <p>{$ "SELECT_LANGUAGE_FA" | translate $}</p>
 </div>
-<language-choice ng-repeat="language in baseController.languages track by $index"
-                 language="language"
-                 change-language="baseController.changeLanguage(language)"
-                 navigate-to="baseController.navigateTo('searching')"></language-choice>
+
+<div class="row">
+    <language-choice ng-repeat="language in baseController.languages track by $index"
+                     language="language"
+                     change-language="baseController.changeLanguage(language)"
+                     navigate-to="baseController.navigateTo('searching')"></language-choice>
+</div>

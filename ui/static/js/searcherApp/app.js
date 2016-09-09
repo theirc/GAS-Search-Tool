@@ -42,4 +42,8 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
                 templateUrl: 'partials/input.html',
                 controller: 'InputController as ctrl'
             })
+            .state('results', {
+                url: '/search/:appointmentId',
+                templateUrl: 'partials/results.html'
+            })
     });

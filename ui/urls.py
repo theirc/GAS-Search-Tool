@@ -7,7 +7,11 @@ from ui.views import HomePageView
 
 directives_patterns = [
     url(r'^language-choice.html$',
-        TemplateView.as_view(template_name='angular/partials/directives/language-choice.html'), name='language-choice')
+        TemplateView.as_view(template_name='angular/partials/directives/language-choice.html'), name='language-choice'),
+    url(r'^forward-button.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/forward-button.html'), name='forward-button'),
+    url(r'^back-button.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/back-button.html'), name='back-button'),
 ]
 
 partial_patterns = [
@@ -16,11 +20,12 @@ partial_patterns = [
         name='searching-for'),
     url(r'^input.html$', TemplateView.as_view(template_name='angular/partials/input.html'),
         name='input'),
+    url(r'^results.html$', TemplateView.as_view(template_name='angular/partials/results.html'), name='results'),
+
     url(r'^directives/', include(directives_patterns, namespace='directives'))
 ]
 
 urlpatterns = [
     url(r'^partials/', include(partial_patterns, namespace='partials')),
     url(r'^$', HomePageView.as_view(), name='home'),
-
 ]

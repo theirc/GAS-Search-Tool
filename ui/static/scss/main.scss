@@ -9,7 +9,6 @@ $accent-color: #276698;
 $text-reversed-color: #f5f5f5;
 $text-reversed-color-muted: #E5E5E5;
 
-
 // bootstrap responsive layout breakpoints
 $screen-sm-min: 768px;
 $screen-xs-max: ($screen-sm-min - 1);
@@ -83,6 +82,7 @@ body, html {
   height: 100%;
   background-color: $background-color;
 }
+
 body {
   height: 100%;
   min-height: 100%;
@@ -91,7 +91,7 @@ body {
 .navbar-default {
   background-color: $navbar-color;
   border: 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   img {
     max-height: 80px;
     display: block;
@@ -138,7 +138,9 @@ body {
 
 .wrapper {
   min-height: 100%;
+  padding-bottom: 90px;
 }
+
 footer {
   padding-top: 10px;
   clear: both;
@@ -162,6 +164,9 @@ footer {
 }
 
 .searching-for-choice-button {
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
   background-color: $button-color;
   color: $text-color !important;
   height: 80px;
@@ -172,8 +177,24 @@ footer {
     background-color: darken($button-color, 5%);
     text-decoration: none;
   }
+  &.no-hover:hover {
+    background-color: $button-color;
+  }
 }
 
+.header-centered {
+  text-align: center;
+  font-size: 32px;
+  margin: 15px 0 10px 0;
+  text-transform: uppercase;
+}
+back-button, forward-button {
+  i.fa {
+    font-size: 32px;
+    padding: 15px;
+    color: $accent-color;
+  }
+}
 // loading overlay
 
 .sk-fading-circle .sk-circle:before {

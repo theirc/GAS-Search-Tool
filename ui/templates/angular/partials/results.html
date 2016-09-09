@@ -1,0 +1,10 @@
+<div class="row button-container">
+    <a class="searching-for-choice-button" ui-sref="home">
+        <back-button></back-button>
+        <span>{$ 'APPOINTMENT_DATES' | translate $}</span>
+    </a>
+</div>
+<h1 class="header-centered">{$ "RESULTS" | translate $}:</h1>
+<p>{$ 'APPOINTMENT_RESULTS' | translate:'{ registration_number: "XXXXXX", date: "DD/MM/YYYY", office: "GAS OFFICE NAME" }' $}</p>
+
+<a href="https://www.google.com/maps/place/{$ appointment.office.name $}">{$ 'CLICK_FOR_MAP' | translate $}</a>
