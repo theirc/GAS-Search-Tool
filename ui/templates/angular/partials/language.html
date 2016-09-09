@@ -3,4 +3,6 @@
     <p>επιλέξτε τη γλώσσα σας</p>
     <p>اختر لغتك</p>
 </div>
-<language-choice ng-repeat="language in baseController.languages track by $index" language="language"></language-choice>
+<language-choice ng-repeat="language in baseController.languages track by $index"
+                 language="language"
+                 change-language="baseController.changeLanguage(language)"></language-choice>
