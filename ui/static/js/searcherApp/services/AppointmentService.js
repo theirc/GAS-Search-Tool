@@ -3,7 +3,7 @@ angular.module('searcherApp').factory('AppointmentService', function ($http, api
         getAppointment: function (registrationNumber) {
             return $http({
                 method: 'POST',
-                url: apiUrl + 'appointments/search',
+                url: apiUrl + '/appointments/search',
                 data: {'registration_number': registrationNumber}
             });
         }
