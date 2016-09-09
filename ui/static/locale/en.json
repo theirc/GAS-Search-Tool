@@ -1,7 +1,24 @@
 {
   "APP_NAME": "Searcher App",
+  "OTHER_LINKS": "Other links",
+  "REFUGEE_INFO": "Refugee Info",
+  "RELOCATION_DECISONS": "Relocation decisions",
   "SEARCHING_FOR": "What are you searching for?",
   "APPOINTMENT_DATES": "Appointment dates",
   "SELECT_ONE": "(Select one of the choices below to proceed)",
-  "MORE_INFORMATION": "More Information Soon"
+  "MORE_INFORMATION": "More Information Soon",
+
+  "SELECT_LANGUAGE_EN": "Select your language",
+  "SELECT_LANGUAGE_EL": "επιλέξτε τη γλώσσα σας",
+  "SELECT_LANGUAGE_AR": "الرجاء اختيار لغتك",
+  "SELECT_LANGUAGE_FA": "لطفا زبان خود را انتخاب کنید",
+
+  "ENGLISH": "English",
+  "GREEK": "ελληνικά",
+  "ARABIC": "العربية",
+  "FARSI": "فارسی",
+  "KURMANJI": "کورمانجی",
+  "SORANI": "سۆرانی",
+  "DARI": "دری",
+  "URDU": "اُردُو"
 }

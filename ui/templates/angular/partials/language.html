@@ -1,7 +1,8 @@
 <div class="view-header row">
-    <p>Select your language</p>
-    <p>επιλέξτε τη γλώσσα σας</p>
-    <p>اختر لغتك</p>
+    <p>{$ "SELECT_LANGUAGE_EN" | translate $}</p>
+    <p>{$ "SELECT_LANGUAGE_EL" | translate $}</p>
+    <p>{$ "SELECT_LANGUAGE_AR" | translate $}</p>
+    <p>{$ "SELECT_LANGUAGE_FA" | translate $}</p>
 </div>
 <language-choice ng-repeat="language in baseController.languages track by $index"
                  language="language"
