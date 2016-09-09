@@ -35,4 +35,8 @@ angular.module('searcherApp').controller('BaseController', function ($rootScope,
     vm.navigateTo = function (name) {
         $state.go(name);
     };
+
+    vm.getDirection = function () {
+        return vm.isRTL ? 'rtl' : 'ltr'
+    }
 });
