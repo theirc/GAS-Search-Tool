@@ -26,7 +26,7 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
             .useCookieStorage()
             .preferredLanguage('en')
             .fallbackLanguage('en')
-            .useSanitizeValueStrategy('sanitize');
+            .useSanitizeValueStrategy(null);
 
         $stateProvider
             .state('home', {
