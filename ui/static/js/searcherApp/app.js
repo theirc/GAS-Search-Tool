@@ -37,4 +37,9 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
                 url: '/search',
                 templateUrl: 'partials/searching-for.html'
             })
+            .state('input', {
+                url: '/input',
+                templateUrl: 'partials/input.html',
+                controller: 'InputController as ctrl'
+            })
     });

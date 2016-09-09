@@ -14,3 +14,9 @@ def static_url(request):
     return {
         'STATIC_URL': settings.STATIC_URL,
     }
+
+
+def url(request):
+    return {
+        'API_URL': settings.API_URL,
+    }

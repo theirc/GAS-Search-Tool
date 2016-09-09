@@ -28,6 +28,7 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(';')
 
+API_URL = os.environ.get('API_URL', 'https://search.rescueapp.org')
 
 # Application definition
 
