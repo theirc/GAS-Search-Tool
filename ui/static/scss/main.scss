@@ -1,11 +1,11 @@
 $background-color: #FFFFFF;
 $navbar-color: #FFFFFF;
-$view-header-color: #EEEEEE;
-$button-color: #E2E2E2;
-$footer-color: #626262;
+$view-header-color: #E6E6E6;
+$button-color: #F2F3F4;
+$footer-color: #F2F3F4;
 $text-color: #000000;
 $text-color-muted: #222222;
-$accent-color: #276698;
+$accent-color: #4CAE4E;
 $text-reversed-color: #f5f5f5;
 $text-reversed-color-muted: #E5E5E5;
 
@@ -94,6 +94,7 @@ body {
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   img {
     max-height: 80px;
+    padding: 5px 0;
     display: block;
   }
   .navbar-logo-container {
@@ -105,35 +106,66 @@ body {
 }
 
 .view-header {
-  padding: 10px 0;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  @include flex-direction(row);
+  height: 80px;
+  margin: 0;
   background-color: $view-header-color;
-  display: block;
-  flex: 1;
+  color: $text-color;
+  border-radius: 3px;
+  .view-header-inner {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(column);
+    flex: 1;
+  }
   p {
+    font-size: 13px;
     margin: 0;
     text-align: center;
   }
 }
 
+.icon-fillter {
+  display: block;
+  height: 62px;
+  width: 62px;
+}
+
+.main-container {
+  @media (max-width: $screen-xs-max) {
+    padding: 0 8px;
+  }
+}
+
 .button-container {
   margin-top: 15px;
-  @media (max-width: $screen-xs-max) {
-    padding: 0 5px;
-  }
 }
 
 .language-choice-button {
   @include transition-mixin(background-color, 0.1, linear);
-  border: 3px solid $accent-color;
+  background-color: $button-color;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   &:hover {
-    background-color: darken($button-color, 1%);
+    background-color: darken($button-color, 5%);
   }
+  @media (max-width: $screen-xs-max) {
+    font-size: 16px;
+  }
+}
+
+p.bigger {
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .wrapper {
@@ -146,18 +178,20 @@ footer {
   clear: both;
   position: relative;
   background-color: $footer-color;
-  color: $text-reversed-color;
+  color: $text-color;
   height: 80px;
   margin-top: -80px;
+  font-size: 12px;
   p {
     text-transform: uppercase;
     margin: 0;
+    font-weight: bold;
   }
   a {
     display: block;
-    color: $text-reversed-color-muted;
+    color: $text-color-muted;
     &:hover {
-      color: lighten($text-reversed-color-muted, 5%);
+      color: lighten($text-color-muted, 5%);
       text-decoration: underline;
     }
   }
@@ -166,13 +200,13 @@ footer {
 .searching-for-choice-button {
   @include flexbox();
   @include align-items(center);
-  @include justify-content(center);
+  @include justify-content(space-between);
   background-color: $button-color;
   color: $text-color !important;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 15px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
   &:hover {
     background-color: darken($button-color, 5%);
     text-decoration: none;
@@ -180,14 +214,67 @@ footer {
   &.no-hover:hover {
     background-color: $button-color;
   }
+  i.fa {
+    padding: 15px;
+    width: 60px;
+    font-size: 32px;
+  }
+  span {
+    font-size: 16px;
+    display: block;
+  }
+}
+
+.submit-button {
+  font-size: 16px;
+  padding: 0;
+  height: 50px;
+  width: 100%;
+  background-color: $button-color;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  .button-flex-container {
+  @include flexbox();
+  @include justify-content(center);
+  @include align-items(center);
+  .filler {
+    display: block;
+    width: 94px;
+    height: 50px;
+  }
+  i.fa {
+    padding: 0 34px;
+    font-size: 26px;
+    color: $accent-color;
+  }
+    }
+}
+
+.submit-button.disabled, .submit-button[disabled], fieldset[disabled] .submit-button {
+  i.fa {
+    visibility: hidden;
+  }
+}
+
+.center-content {
+  @include flexbox();
+  @include justify-content(center);
+}
+
+.registration-image-container {
+  margin: 15px 0;
+  p {
+    font-weight: bold;
+    text-align: center;
+  }
 }
 
 .header-centered {
   text-align: center;
-  font-size: 32px;
+  font-size: 24px;
   margin: 15px 0 10px 0;
   text-transform: uppercase;
 }
+
 back-button, forward-button {
   i.fa {
     font-size: 32px;
@@ -195,6 +282,7 @@ back-button, forward-button {
     color: $accent-color;
   }
 }
+
 // loading overlay
 
 .sk-fading-circle .sk-circle:before {

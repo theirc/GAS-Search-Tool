@@ -1,16 +1,16 @@
-<div class="row button-container" xmlns="http://www.w3.org/1999/html">
-    <a class="searching-for-choice-button" ui-sref="searching">
-        <back-button></back-button>
-        <div class="text-center">
-            <p>{$ 'APPOINTMENT_DATES' | translate $}</p>
-            <p>{$ 'ENTER_INFO_BELOW' | translate $}</p>
-        </div>
-    </a>
-</div>
-<div class="row text-center">
+{% load static %}
+<a class="view-header row" ui-sref="searching">
+    <back-button></back-button>
+    <div class="view-header-inner">
+        <p class="bigger">{$ 'APPOINTMENT_DATES' | translate $}</p>
+        <p>{$ 'ENTER_INFO_BELOW' | translate $}</p>
+    </div>
+    <div class="icon-fillter"></div>
+</a>
+<div class="registration-image-container">
     <p>{$ 'FIND_REGISTRATION_NUMBER' | translate $}</p>
-    <img src="http://placekitten.com/g/400/300"/>
+    <img src="{% static 'images/registration_number.png' %}" class="img-responsive"/>
 </div>
-<div class="row text-center">
-<input-form></input-form>
+<div class="text-center">
+    <input-form></input-form>
 </div>
