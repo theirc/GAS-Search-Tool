@@ -1,15 +1,13 @@
 <div class="view-header row">
-    <p>{$ 'SEARCHING_FOR' | translate $}</p>
-    <p>{$ 'SELECT_ONE' | translate $}</p>
-</div>
-<div class="row button-container">
-    <a class="searching-for-choice-button" ui-sref="input">
-        <span>{$ 'APPOINTMENT_DATES' | translate $}</span>
-        <forward-button></forward-button>
-    </a>
-</div>
-<div class="row button-container">
-    <div class="searching-for-choice-button no-hover">
-        {$ 'MORE_INFORMATION' | translate $}
+    <div class="view-header-inner">
+        <p class="bigger">{$ 'SEARCHING_FOR' | translate $}</p>
+        <p>{$ 'SELECT_ONE' | translate $}</p>
     </div>
 </div>
+<a class="searching-for-choice-button" ui-sref="input">
+    <i class="fa fa-calendar"></i>
+    <span>{$ 'APPOINTMENT_DATES' | translate $}</span>
+    <forward-button></forward-button>
+</a>
+
+<p class=""></p>

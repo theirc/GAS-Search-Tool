@@ -9,6 +9,12 @@
     </div>
     <p class="text-danger" data-ng-show="form.$valid && registrationNumber != confirmRegistrationNumber">{$ 'NUMBERS_DONT_MATCH' | translate $}</p>
     <p class="text-danger" data-ng-show="ctrl.noData">{$ 'INVALID_NUMBER' | translate $}</p>
-    <input class="btn" type="submit" ng-disabled="form.$invalid || registrationNumber != confirmRegistrationNumber"
-           ng-click="ctrl.submit()" value="{$ 'SUBMIT' | translate $}" />
+    <button class="btn submit-button" type="submit" ng-disabled="form.$invalid || registrationNumber != confirmRegistrationNumber"
+           ng-click="ctrl.submit()">
+        <span class="button-flex-container">
+            <span class="filler"></span>
+            <span>{$ 'SUBMIT' | translate $}</span>
+            <i class="fa fa-check"></i>
+        </span>
+    </button>
 </form>
