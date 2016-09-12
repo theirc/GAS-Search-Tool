@@ -1,15 +1,15 @@
 {
   "APP_NAME": "Search Tool",
-  "OTHER_LINKS": "Useful links",
+  "OTHER_LINKS": "روابط مفيدة",
   "REFUGEE_INFO": "Refugee Info",
-  "RELOCATION_DECISONS": "Relocation decisions",
+  "RELOCATION_DECISONS": "قرارات إعادة التوطين",
   "SEARCHING_FOR": "ما الذي تبحث عنه؟",
   "APPOINTMENT_DATES": "مواعيد التسجيل الكاملة",
   "SELECT_ONE": "(اختر واحدة من الخيارات التي بالأسفل للاستمرار)",
   "MORE_INFORMATION": "More Information Soon",
   "RESULTS": "النتائج",
   "APPOINTMENT_RESULTS": "The registration interview appointment for registration number {$ number $} is scheduled on {$ date $} at the {$ office $}.",
-  "CLICK_FOR_MAP": "Click here for a map of the area of the office.",
+  "CLICK_FOR_MAP": "اضغط هنا لتظهر لك خريطة للمنطقة التي يقع فيها المكتب.",
 
   "SELECT_LANGUAGE_EN": "Select your language",
   "SELECT_LANGUAGE_EL": "επιλέξτε τη γλώσσα σας",
@@ -30,6 +30,6 @@
   "ENTER_NUMBER": "أدخل رقم التسجيل الخاص بك",
   "CONFIRM_NUMBER": "قم بتأكيد رقم التسجيل الخاص بك",
   "SUBMIT": "أرسل",
-  "NUMBERS_DONT_MATCH": "Numbers don't match",
-  "INVALID_NUMBER": "Registration number not found"
+  "NUMBERS_DONT_MATCH": "الأرقام لا تتطابق",
+  "INVALID_NUMBER": "رقم التسجيل غير موجود"
 }

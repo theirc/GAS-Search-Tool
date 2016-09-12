@@ -1,3 +1,35 @@
 {
-  "APP_NAME": "FA Searcher App"
+  "APP_NAME": "Search Tool",
+  "OTHER_LINKS": "Useful links",
+  "REFUGEE_INFO": "Refugee Info",
+  "RELOCATION_DECISONS": "Relocation decisions",
+  "SEARCHING_FOR": "در جستجوی چه هستید؟",
+  "APPOINTMENT_DATES": "وقت ملاقات برای ثبت نام کامل",
+  "SELECT_ONE": "(یکی از گزینه های زیر را انتخاب کنید تا بتوانید ادامه دهید)",
+  "MORE_INFORMATION": "More Information Soon",
+  "RESULTS": "النتائج",
+  "APPOINTMENT_RESULTS": "The registration interview appointment for registration number {$ number $} is scheduled on {$ date $} at the {$ office $}.",
+  "CLICK_FOR_MAP": "اینجا را کلیک کنید تا نقشه ناحیه ای که اداره در آن واقع شده است ببینید",
+
+  "SELECT_LANGUAGE_EN": "Select your language",
+  "SELECT_LANGUAGE_EL": "επιλέξτε τη γλώσσα σας",
+  "SELECT_LANGUAGE_AR": "الرجاء اختيار لغتك",
+  "SELECT_LANGUAGE_FA": "لطفا زبان خود را انتخاب کنید",
+
+  "ENGLISH": "English",
+  "GREEK": "ελληνικά",
+  "ARABIC": "العربية",
+  "FARSI": "فارسی",
+  "KURMANJI": "کورمانجی",
+  "SORANI": "سۆرانی",
+  "DARI": "دری",
+  "URDU": "اُردُو",
+
+  "FIND_REGISTRATION_NUMBER": "شماره ثبت نام خود را در اینجا پیدا می کنید",
+  "ENTER_INFO_BELOW": "(اطلاعات زیر را وارد کنید)",
+  "ENTER_NUMBER": "شماره ثبت نام خود را وارد کنی",
+  "CONFIRM_NUMBER": "شماره ثبت نام خود را تائید کنید",
+  "SUBMIT": "تحویل دهید",
+  "NUMBERS_DONT_MATCH": "الأرقام لا تتطابق",
+  "INVALID_NUMBER": "رقم التسجيل غير موجود"
 }
