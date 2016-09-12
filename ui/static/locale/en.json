@@ -8,8 +8,10 @@
   "SELECT_ONE": "(Select one of the choices below to proceed)",
   "MORE_INFORMATION": "More Information Soon",
   "RESULTS": "Results",
-  "APPOINTMENT_RESULTS": "The registration interview appointment for registration number {$ number $} is scheduled on {$ date $} at the {$ office $}.",
+  "APPOINTMENT_RESULTS": "The full registration appointment for registration number {$ number $} is scheduled at {$ hour $} {$ am_pm $} in the {$ time_of_day $} on {$ date $}, at the {$ office $}.",
   "CLICK_FOR_MAP": "Click here for a map of the area of the office.",
+  "MORNING": "Morning",
+  "AFTERNOON": "Afternoon",
 
   "SELECT_LANGUAGE_EN": "Select your language",
   "SELECT_LANGUAGE_EL": "επιλέξτε τη γλώσσα σας",
