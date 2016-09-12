@@ -1,6 +1,6 @@
 {% load static %}
 <a class="view-header row" ui-sref="searching">
-    <back-button></back-button>
+    <back-button direction="{$ baseController.getDirection() $}"></back-button>
     <div class="view-header-inner">
         <p class="bigger">{$ 'APPOINTMENT_DATES' | translate $}</p>
         <p>{$ 'ENTER_INFO_BELOW' | translate $}</p>

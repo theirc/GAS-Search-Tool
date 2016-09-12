@@ -7,7 +7,7 @@
 <a class="searching-for-choice-button" ui-sref="input">
     <i class="fa fa-calendar"></i>
     <span>{$ 'APPOINTMENT_DATES' | translate $}</span>
-    <forward-button></forward-button>
+    <forward-button direction="{$ baseController.getDirection() $}"></forward-button>
 </a>
 
 <p class=""></p>
