@@ -4,6 +4,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from djng.views.mixins import JSONResponseMixin
+from pytz import timezone
 
 from . import models
 
@@ -26,6 +27,8 @@ class SearchJSONView(JSONResponseMixin, View):
             return self.json_response(None)
 
         appointment = appointment[0]
+        appointment.date = appointment.date.astimezone(timezone("Europe/Athens"))
+
         return self.json_response({
             'date': appointment.date.strftime("%x"),
             'hour': appointment.date.strftime("%X"),
