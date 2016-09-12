@@ -129,7 +129,7 @@ LANGUAGES = (
     ('ar', _('Arabic')),
     ('fa', _('Farsi')),
     ('kmr', _('Kurmanji')),
-    ('ckb', _('Sorani')),
+    ('pan', _('Punjabi')),
     ('prs', _('Dari')),
     ('ur', _('Urdu')),
 )
