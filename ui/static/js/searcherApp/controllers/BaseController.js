@@ -26,7 +26,7 @@ angular.module('searcherApp').controller('BaseController', function ($rootScope,
     };
 
     vm.changeLanguage = function (language) {
-        vm.isRTL = !(language.code === 'en' || language.code === 'el');
+        vm.isRTL = !(language.code === 'en' || language.code === 'el' || language.code === 'kmr' || language.code === 'pan');
         vm.language = language;
         $translate.use(language.code);
     };
