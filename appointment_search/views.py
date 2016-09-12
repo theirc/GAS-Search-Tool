@@ -30,10 +30,10 @@ class SearchJSONView(JSONResponseMixin, View):
         appointment.date = appointment.date.astimezone(timezone("Europe/Athens"))
 
         return self.json_response({
-            'date': appointment.date.strftime("%x"),
-            'hour': appointment.date.strftime("%X"),
+            'date': appointment.date.strftime('%d-%m-%Y'),
+            'hour': appointment.date.strftime("%H:%M"),
             'am_pm': appointment.date.strftime("%p"),
-            'time_of_day': time_of_day(appointment.date.strftime("%H")),
+            'time_of_day': time_of_day(appointment.date.hour),
             'registration_number': appointment.registration_number,
             'office_name': appointment.office.name,
             'office': {a.language: {'name': a.name, 'address': a.address} for a in
