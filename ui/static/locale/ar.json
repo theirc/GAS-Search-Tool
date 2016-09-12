@@ -10,6 +10,8 @@
   "RESULTS": "النتائج",
   "APPOINTMENT_RESULTS": "The registration interview appointment for registration number {$ number $} is scheduled on {$ date $} at the {$ office $}.",
   "CLICK_FOR_MAP": "اضغط هنا لتظهر لك خريطة للمنطقة التي يقع فيها المكتب.",
+  "MORNING": "صباحاً",
+  "AFTERNOON": "مساءً",
 
   "SELECT_LANGUAGE_EN": "Select your language",
   "SELECT_LANGUAGE_EL": "επιλέξτε τη γλώσσα σας",
@@ -31,5 +33,9 @@
   "CONFIRM_NUMBER": "قم بتأكيد رقم التسجيل الخاص بك",
   "SUBMIT": "أرسل",
   "NUMBERS_DONT_MATCH": "الأرقام لا تتطابق",
-  "INVALID_NUMBER": "رقم التسجيل غير موجود"
+  "INVALID_NUMBER": "رقم التسجيل غير موجود",
+
+  "UPDATE_DATA_INFO_1": "إذا تغير عنوانك أو رقم هاتفك ، يجب إرسال بريد إلكتروني على",
+  "UPDATE_DATA_INFO_2": "وهذا أمر مهم جدا، لأنه يتعين على السلطات أن تتصل بك لتقول لكم متى تأتي إلى مكتب اللجوء الإقليمي. تحتاج إلى إدراج اسمك، وتاريخ الميلاد، رقم التسجيل، رقم الهاتف الجديد وعنوانك الجديد في هذا البريد الإلكتروني باللغة الإنجليزية أو اليونانية."
+}
 }
