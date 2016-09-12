@@ -1,3 +1,35 @@
 {
-  "APP_NAME": "AR Searcher App"
+  "APP_NAME": "Search Tool",
+  "OTHER_LINKS": "Useful links",
+  "REFUGEE_INFO": "Refugee Info",
+  "RELOCATION_DECISONS": "Relocation decisions",
+  "SEARCHING_FOR": "ما الذي تبحث عنه؟",
+  "APPOINTMENT_DATES": "مواعيد التسجيل الكاملة",
+  "SELECT_ONE": "(اختر واحدة من الخيارات التي بالأسفل للاستمرار)",
+  "MORE_INFORMATION": "More Information Soon",
+  "RESULTS": "النتائج",
+  "APPOINTMENT_RESULTS": "The registration interview appointment for registration number {$ number $} is scheduled on {$ date $} at the {$ office $}.",
+  "CLICK_FOR_MAP": "Click here for a map of the area of the office.",
+
+  "SELECT_LANGUAGE_EN": "Select your language",
+  "SELECT_LANGUAGE_EL": "επιλέξτε τη γλώσσα σας",
+  "SELECT_LANGUAGE_AR": "الرجاء اختيار لغتك",
+  "SELECT_LANGUAGE_FA": "لطفا زبان خود را انتخاب کنید",
+
+  "ENGLISH": "English",
+  "GREEK": "ελληνικά",
+  "ARABIC": "العربية",
+  "FARSI": "فارسی",
+  "KURMANJI": "کورمانجی",
+  "SORANI": "سۆرانی",
+  "DARI": "دری",
+  "URDU": "اُردُو",
+
+  "FIND_REGISTRATION_NUMBER": "هنا يمكنك إيجاد رقم التسجيل الخاص بك",
+  "ENTER_INFO_BELOW": "(أدخل رقم التسجيل الخاص بك)",
+  "ENTER_NUMBER": "أدخل رقم التسجيل الخاص بك",
+  "CONFIRM_NUMBER": "قم بتأكيد رقم التسجيل الخاص بك",
+  "SUBMIT": "أرسل",
+  "NUMBERS_DONT_MATCH": "Numbers don't match",
+  "INVALID_NUMBER": "Registration number not found"
 }
