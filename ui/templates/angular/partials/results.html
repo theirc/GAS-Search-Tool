@@ -7,8 +7,7 @@
 </a>
 
 <h1 class="header-centered">{$ "RESULTS" | translate $}:</h1>
-<p>{$ 'APPOINTMENT_RESULTS' | translate: {number: ctrl.appointment.registration_number,
-    date: ctrl.appointment.date, office: ctrl.appointment.office_name} $}
+<p>{$ 'APPOINTMENT_RESULTS' | translate: ctrl.translationData $}
 </p>
 
-<a href="https://www.google.com/maps/place/{$ appointment.office.name $}">{$ 'CLICK_FOR_MAP' | translate $}</a>
+<a href="https://www.google.com/maps/place/{$ ctrl.appointment.office.en.address $}">{$ 'CLICK_FOR_MAP' | translate $}</a>

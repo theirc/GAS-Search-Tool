@@ -8,6 +8,13 @@ from djng.views.mixins import JSONResponseMixin
 from . import models
 
 
+def time_of_day(hour):
+    if hour < 12:
+        return 'MORNING'
+    else:
+        return 'AFTERNOON'
+
+
 @method_decorator(csrf_exempt, name='dispatch')
 class SearchJSONView(JSONResponseMixin, View):
     def post(self, request, *args, **kwargs):
@@ -21,6 +28,9 @@ class SearchJSONView(JSONResponseMixin, View):
         appointment = appointment[0]
         return self.json_response({
             'date': appointment.date.strftime("%x"),
+            'hour': appointment.date.strftime("%X"),
+            'am_pm': appointment.date.strftime("%p"),
+            'time_of_day': time_of_day(appointment.date.strftime("%H")),
             'registration_number': appointment.registration_number,
             'office_name': appointment.office.name,
             'office': {a.language: {'name': a.name, 'address': a.address} for a in
