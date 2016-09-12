@@ -1,6 +1,6 @@
 {
   "APP_NAME": "Searcher App",
-  "OTHER_LINKS": "Other links",
+  "OTHER_LINKS": "Useful links",
   "REFUGEE_INFO": "Refugee Info",
   "RELOCATION_DECISONS": "Relocation decisions",
   "SEARCHING_FOR": "What are you searching for?",
@@ -28,7 +28,7 @@
   "FIND_REGISTRATION_NUMBER": "This is where you find your registration number",
   "ENTER_INFO_BELOW": "(Enter information below)",
   "ENTER_NUMBER": "Enter your registration number",
-  "CONFIRM_NUMBER": "Confirm your registration number",
+  "CONFIRM_NUMBER": "Re-enter your registration number",
   "SUBMIT": "Submit",
   "NUMBERS_DONT_MATCH": "Numbers don't match",
   "INVALID_NUMBER": "Registration number not found"
