@@ -13,7 +13,9 @@ directives_patterns = [
     url(r'^back-button.html$',
         TemplateView.as_view(template_name='angular/partials/directives/back-button.html'), name='back-button'),
     url(r'^input-form.html$',
-        TemplateView.as_view(template_name='angular/partials/directives/input-form.html'), name='input-form')
+        TemplateView.as_view(template_name='angular/partials/directives/input-form.html'), name='input-form'),
+    url(r'^update-data-info.html$',
+        TemplateView.as_view(template_name='angular/partials/directives/update-data-info.html'), name='update-data-info')
 ]
 
 partial_patterns = [
