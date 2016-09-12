@@ -255,6 +255,14 @@ footer {
   }
 }
 
+.error-message {
+  display: flex;
+  align-items: center;
+  p {
+    flex: 1;
+  }
+}
+
 .center-content {
   @include flexbox();
   @include justify-content(center);

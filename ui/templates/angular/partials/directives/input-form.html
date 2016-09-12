@@ -7,8 +7,15 @@
         <label>{$ 'CONFIRM_NUMBER' | translate $}</label>
         <input type="text" name="confirmRegistrationNumber" class="form-control" ng-model="confirmRegistrationNumber" required />
     </div>
-    <p class="text-danger" data-ng-show="form.$valid && registrationNumber != confirmRegistrationNumber">{$ 'NUMBERS_DONT_MATCH' | translate $}</p>
-    <p class="text-danger" data-ng-show="ctrl.noData">{$ 'INVALID_NUMBER' | translate $}</p>
+    <div class="alert alert-warning" data-ng-show="form.$valid && registrationNumber != confirmRegistrationNumber">
+        {$ 'NUMBERS_DONT_MATCH' | translate $}
+    </div>
+    <div class="alert alert-danger error-message" ng-show="ctrl.noData">
+        <i class="glyphicon glyphicon-alert fa-2x"></i>
+        <p>
+            {$ 'INVALID_NUMBER' | translate $}
+        </p>
+    </div>
     <button class="btn submit-button" type="submit" ng-disabled="form.$invalid || registrationNumber != confirmRegistrationNumber"
            ng-click="ctrl.submit()">
         <span class="button-flex-container">
