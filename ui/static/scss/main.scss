@@ -111,6 +111,7 @@ body {
   @include justify-content(center);
   @include flex-direction(row);
   min-height: 80px;
+  padding: 10px 0;
   margin: 0;
   background-color: $view-header-color;
   color: $text-color;
@@ -126,6 +127,13 @@ body {
     font-size: 13px;
     margin: 0;
     text-align: center;
+  }
+}
+a.view-header {
+  &:hover {
+    text-decoration: none;
+    color: $text-color-muted;
+    background-color: darken($view-header-color, 5%);
   }
 }
 
@@ -233,20 +241,20 @@ footer {
   background-color: $button-color;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   .button-flex-container {
-  @include flexbox();
-  @include justify-content(center);
-  @include align-items(center);
-  .filler {
-    display: block;
-    width: 94px;
-    height: 50px;
-  }
-  i.fa {
-    padding: 0 34px;
-    font-size: 26px;
-    color: $accent-color;
-  }
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+    .filler {
+      display: block;
+      width: 94px;
+      height: 50px;
     }
+    i.fa {
+      padding: 0 34px;
+      font-size: 26px;
+      color: $accent-color;
+    }
+  }
 }
 
 .submit-button.disabled, .submit-button[disabled], fieldset[disabled] .submit-button {
@@ -294,6 +302,7 @@ back-button, forward-button {
 .update-data-info {
   padding-top: 100px;
 }
+
 // loading overlay
 
 .sk-fading-circle .sk-circle:before {
