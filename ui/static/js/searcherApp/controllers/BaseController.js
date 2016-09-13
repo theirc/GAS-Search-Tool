@@ -4,7 +4,7 @@ angular.module('searcherApp').controller('BaseController', function ($rootScope,
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.languages = languages;
     vm.language = $translate.proposedLanguage() || $translate.use();
-    vm.isRTL = vm.language && !(vm.language === 'en' || vm.language === 'el');
+    vm.isRTL = vm.language && !(vm.language === 'en' || vm.language === 'el' || language.code === 'kmr' || language.code === 'pan');
     var deregisterStateChangeStartHandler = $rootScope.$on('$stateChangeStart', function () {
         LoadingOverlayService.start();
     });
