@@ -8,7 +8,7 @@
   "SELECT_ONE": "(اختر واحدة من الخيارات التي بالأسفل للاستمرار)",
   "MORE_INFORMATION": "More Information Soon",
   "RESULTS": "النتائج",
-  "APPOINTMENT_RESULTS": "The registration interview appointment for registration number {$ number $} is scheduled on {$ date $} at the {$ office $}.",
+  "APPOINTMENT_RESULTS": "موعد التسجيل الكامل لرقم التسجيل {$ number $} سيكون عند الساعة {$ hour $} {$ am_pm $} في {$ time_of_day $} يوم {$ date $} , في  {$ office $} .",
   "CLICK_FOR_MAP": "اضغط هنا لتظهر لك خريطة للمنطقة التي يقع فيها المكتب.",
   "MORNING": "صباحاً",
   "AFTERNOON": "مساءً",
@@ -23,7 +23,7 @@
   "ARABIC": "العربية",
   "FARSI": "فارسی",
   "KURMANJI": "کورمانجی",
-  "SORANI": "سۆرانی",
+  "PUNJABI": "ਪੰਜਾਬੀ",
   "DARI": "دری",
   "URDU": "اُردُو",
 
