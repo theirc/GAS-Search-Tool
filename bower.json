@@ -25,7 +25,8 @@
     "is-loading": "^1.0.6",
     "angular-translate": "^2.11.0",
     "angular-translate-loader-static-files": "^2.11.1",
-    "angular-translate-storage-cookie": "^2.11.1"
+    "angular-translate-storage-cookie": "^2.11.1",
+    "moment": "^2.15.0"
   },
   "resolutions": {
     "angular": "^1.5.8"

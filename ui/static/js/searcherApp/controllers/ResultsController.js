@@ -1,6 +1,13 @@
 angular.module('searcherApp').controller('ResultsController', function (appointment, $filter) {
     var vm = this;
     vm.appointment = appointment;
+    if(appointment.datetime) {
+        m = moment(appointment.datetime);
+        appointment.am_pm = '';
+        appointment.hour = m.format('LT');
+        appointment.date = m.format('L');
+    }
+
     vm.translationData = {
         number: appointment.registration_number,
         hour: appointment.hour,

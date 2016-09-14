@@ -10,6 +10,10 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
         $rootScope.backToPreviousState = function () {
             $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
         };
+
+	$rootScope.$on('$translateChangeEnd', function(e, l) {
+	    moment.locale(l.language);
+	});
     })
     .config(function ($stateProvider, $urlRouterProvider, $interpolateProvider, $httpProvider, $translateProvider, staticUrl) {
         $interpolateProvider.startSymbol('{$');
