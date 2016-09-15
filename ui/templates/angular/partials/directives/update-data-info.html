@@ -1,2 +1,5 @@
-<p class="update-data-info">{$ 'UPDATE_DATA_INFO_1' | translate $} <a href="mailto:new.numbers@asylo.gov.gr">new.numbers@asylo.gov.gr</a>
-{$ 'UPDATE_DATA_INFO_2' | translate $}</p>
+<p class="update-data-info">
+    <span ng-bind-html="translateToHtml('UPDATE_DATA_INFO_1')"></span>
+    <a href="mailto:new.numbers@asylo.gov.gr">new.numbers@asylo.gov.gr</a>
+    <span ng-bind-html="translateToHtml('UPDATE_DATA_INFO_2')"></span>
+</p>

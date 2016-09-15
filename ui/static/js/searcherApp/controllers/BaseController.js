@@ -1,5 +1,5 @@
 angular.module('searcherApp').controller('BaseController', function ($rootScope, LoadingOverlayService, $state,
-                                                                     languages, $translate, $cookies) {
+                                                                     languages, $translate, $cookies, $sce, $translate) {
     var vm = this;
     vm.isCookiePolicyAccepted = $cookies.get('cookiePolicy');
     vm.languages = languages;
@@ -38,4 +38,10 @@ angular.module('searcherApp').controller('BaseController', function ($rootScope,
     vm.getDirection = function () {
         return vm.isRTL ? 'rtl' : 'ltr'
     }
+
+    $rootScope.translateToHtml = function(value) {
+      console.log($translate.instant(value));
+        // Defaults to treating trusted text as `html`
+        return $sce.trustAsHtml($translate.instant(value));
+    };
 });
