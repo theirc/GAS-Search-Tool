@@ -35,6 +35,6 @@
   "NUMBERS_DONT_MATCH": "Numbers don't match",
   "INVALID_NUMBER": "Registration number not found",
 
-  "UPDATE_DATA_INFO_1": "This tool is designed to facilitate the provision of information on registration appointments with the Greek Asylum Service.\nIf your phone number or address change, you need to email the Asylum Service at",
-  "UPDATE_DATA_INFO_2": "This is very important, because the authorities need to contact you to tell you when to come to the Regional Asylum Office. You need to include your name, date of birth, registration number, new phone number and your new address in this email, in English or Greek.​\n The information used in this tool is obtained from the registration appointment lists provided by the Greek Asylum Service."
+  "UPDATE_DATA_INFO_1": "<strong>This tool is designed to facilitate the provision of information on registration appointments with the Greek Asylum Service. </strong><br /> If your phone number or address change, you need to email the Asylum Service at",
+  "UPDATE_DATA_INFO_2": "This is very important, because the authorities need to contact you to tell you when to come to the Regional Asylum Office. You need to include your name, date of birth, registration number, new phone number and your new address in this email, in English or Greek.​<br /> The information used in this tool is obtained from the registration appointment lists provided by the Greek Asylum Service."
 }
