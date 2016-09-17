@@ -13,7 +13,11 @@ angular.module('searcherApp', ['ui.router', 'ngCookies', 'ngSanitize', 'pascalpr
 
 	$rootScope.$on('$translateChangeEnd', function(e, l) {
 	    if (moment.locales().indexOf(l.language) > -1) {
-    	        moment.locale(l.language);
+                if (l.language == 'en') {
+                    moment.locale('en-gb');
+                } else {
+    	            moment.locale(l.language);
+                }
             } else {
                 moment.locale('en-gb'); // We can add other locales to Moment when we have time. en_GB should be enough for now
             }

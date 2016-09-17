@@ -37,7 +37,6 @@
       ga('send', 'pageview');
 
     </script>
-    {% compress js %}
         <script type="text/javascript" src='{% static 'js/searcherApp/app.js' %}'></script>
 
         <script type="text/javascript" src='{% static 'js/searcherApp/services/LoadingOverlayService.js' %}'></script>
@@ -52,7 +51,6 @@
         <script type="text/javascript" src='{% static 'js/searcherApp/directives/backButton.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/searcherApp/directives/inputForm.js' %}'></script>
         <script type="text/javascript" src='{% static 'js/searcherApp/directives/updateDataInfo.js' %}'></script>
-    {% endcompress %}
 
     <script type="text/javascript">
         angular.module('searcherApp').constant('staticUrl', '{{ STATIC_URL }}');
@@ -66,9 +64,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
-    {% endcompress %}
+        <link rel="stylesheet" href="{% static 'scss/main.css' %}">
 
     {% block additional-requirements %}{% endblock %}
 
