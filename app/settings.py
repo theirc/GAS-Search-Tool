@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'appointment_search',
     'ui',
     'corsheaders',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

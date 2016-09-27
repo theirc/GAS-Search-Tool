@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+
+{% load widget_tweaks static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}"/>
+    <style>
+        .flex { flex: 1}
+    </style>
+{% endblock %}
+{% block sidebar %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            <fieldset class="module aligned">
+            <div class="form-row">
+                <div style="display: flex;">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field | add_class:'flex' }}
+                    {% for error in field.errors %}
+                        <span style="color: #e3362d">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            </fieldset>
+
+        {% endfor %}
+        <div class="submit-row">
+            <input type="submit" value="Submit"/>
+        </div>
+    </form>
+
+{% endblock %}
