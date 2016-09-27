@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djng',
     'appointment_search',
-    'compressor',
     'ui',
     'corsheaders',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -144,18 +144,10 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
 ]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
-
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'sass --scss {infile} {outfile}'),
-)
 
 CORS_ORIGIN_ALLOW_ALL = True
 
