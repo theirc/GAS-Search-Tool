@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+{% block sidebar %}
+<div class="module">
+    <p> You are going to delete {{ appointments | length }} appointments from {{ from_date }} to {{ to_date }} </p>
+    <p> Are you sure about that? </p>
+    <form method="post" action="{%  url 'delete_appointments' %}">{% csrf_token %}
+        <input type="hidden" name="from-date" value="{{ from_date }}">
+        <input type="hidden" name="to-date" value="{{ to_date }}">
+        <button type="submit" class="button" style="padding: 10px">
+            Yes, I'm sure
+        </button>
+        <a href="{% url 'remove_appointments' %}">
+            <button class="button" type="button" style="padding: 10px">
+                No, take me back
+            </button>
+        </a>
+    </form>
+    <table style="width: 100%">
+        <tr>
+            <th>Registration number</th>
+            <th>Date</th>
+        </tr>
+        {% for obj in appointments %}
+            <tr>
+                <th>
+                    {{ obj.registration_number }}
+                </th>
+                <th>
+                    {{ obj.date }}
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{%  endblock %}

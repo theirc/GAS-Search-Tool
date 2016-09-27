@@ -2,8 +2,10 @@ from django.contrib import admin
 
 from . import models
 
+
 class DetailsInline(admin.TabularInline):
     model = models.AsylumOfficeDetails
+
 
 @admin.register(models.AsylumOffice)
 class AsylumOfficeAdmin(admin.ModelAdmin):
@@ -30,4 +32,3 @@ admin.site.register(
 )
 
 admin.site.index_template = "admin/custom_index.html"
-#admin.site.register(models.AppointmentSchedule, admin.ModelAdmin)
