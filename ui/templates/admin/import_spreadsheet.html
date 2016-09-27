@@ -6,7 +6,9 @@
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}"/>
     <style>
-        .flex { flex: 1}
+        .flex {
+            flex: 1
+        }
     </style>
 {% endblock %}
 {% block sidebar %}
@@ -20,18 +22,23 @@
 
         {% for field in form.visible_fields %}
             <fieldset class="module aligned">
-            <div class="form-row">
-                <div style="display: flex;">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field | add_class:'flex' }}
-                    {% for error in field.errors %}
-                        <span style="color: #e3362d">{{ error }}</span>
-                    {% endfor %}
+                <div class="form-row">
+                    <div style="display: flex;">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field | add_class:'flex' }}
+                        {% for error in field.errors %}
+                            <span style="color: #e3362d">{{ error }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
             </fieldset>
 
         {% endfor %}
+        <fieldset class="module aligned">
+
+            <p>Make sure that uploaded spreadsheet first row is <strong>not</strong> empty.</p>
+            <p>Supported file types: .xlsx, .xls</p>
+        </fieldset>
         <div class="submit-row">
             <input type="submit" value="Submit"/>
         </div>
