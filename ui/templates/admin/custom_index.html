@@ -1,0 +1,20 @@
+{% extends "admin/index.html" %}
+
+{% block sidebar %}
+    {{block.super}}
+    <div class="module">
+        <table style="width: 100%">
+            <caption>Tasks</caption>
+            <tr>
+                <th>
+                    <a href="">Import Spreadsheet</a>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="">Remove Appointments</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

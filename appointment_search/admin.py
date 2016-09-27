@@ -29,5 +29,5 @@ admin.site.register(
     list_select_related=['office']
 )
 
-
+admin.site.index_template = "admin/custom_index.html"
 #admin.site.register(models.AppointmentSchedule, admin.ModelAdmin)
