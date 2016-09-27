@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+{% block sidebar %}
+    {% if result %}
+        <p>Deleted {{ result }} appointments.</p>
+    {% endif %}
+    <form action="{%  url 'confirm_delete' %}" method="post" id="post-form">{% csrf_token %}
+        <h1>Enter dates to remove appointments</h1>
+            From: <input type="date" name="from-date" required><br>
+            To: <input type="date" name="to-date" required><br>
+        <input type="submit" id="submit" value="Submit">
+    </form>
+{%  endblock %}
