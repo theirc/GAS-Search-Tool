@@ -16,8 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from app.views import RemoveAppointmentsView, confirm_delete, delete_appointments
+
 urlpatterns = [
     url(r'^', include('ui.urls')),
+    url(r'^admin/remove_appointments/$', RemoveAppointmentsView.as_view(), name='remove_appointments'),
+    url(r'^admin/remove_appointments/delete/$', delete_appointments, name='delete_appointments'),
+    url(r'^admin/remove_appointments/confirm/$', confirm_delete, name='confirm_delete'),
     url(r'^admin/', admin.site.urls),
     url(r'^appointments/', include('appointment_search.urls')),
 
