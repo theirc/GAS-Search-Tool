@@ -2,7 +2,7 @@ angular.module('searcherApp').controller('ResultsController', function (appointm
     var vm = this;
     vm.appointment = appointment;
     if(appointment.datetime) {
-        m = moment(appointment.datetime);
+        m = moment(appointment.datetime).tz('Europe/Athens');
         appointment.am_pm = '';
         appointment.hour = m.format('LT');
         appointment.date = m.format('L');
