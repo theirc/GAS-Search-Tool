@@ -28,3 +28,10 @@ Installing
     source ~/.virtualenvs/searcher/bin/activate      # if you installed
     pip install flake8
     git diff origin/master | flake8 --diff
+
+
+### Test data setup
+    Once you download and get the environment for the app running (the default settings will generate a sqlite db that
+    is good enough for development), you can run this management command below and it will populate the DB with some
+    test data:
+    python manage.py import_spreadsheet https://rescue.box.com/shared/static/jm9ya6vhfkh05mxrio9kjhlpxa6obeeh.xlsx
