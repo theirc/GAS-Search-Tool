@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^admin/remove_appointments/confirm/$', confirm_delete, name='confirm_delete'),
     url(r'^admin/', admin.site.urls),
     url(r'^appointments/', include('appointment_search.urls')),
-
+    url(r'^ivr/', include('ivr.urls')),
 ]
