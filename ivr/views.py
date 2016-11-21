@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from appointment_search.models import AppointmentSchedule
+from twilio import twiml
 
+# TODO: Add S3 Bucket path
+IVR_AUDIO_PATH = ''
 
 def time_of_day(hour):
     if hour < 12:
@@ -14,13 +17,23 @@ def time_of_day(hour):
 @csrf_exempt
 def incoming(request):
     # Language Selection Menu
-    return HttpResponse("TwiML for language selection manual")
+    languages = ['english', 'kurmanji', 'punjabi', 'dari', 'urdu', 'arabic', 'farsi', 'greek', 'sourani']
+    repeat_count = 3
+    resp = twiml.Response()
+    with resp.gather(numDigits=1, action='/ivr/registration') as gather:
+        gather.say('Welcome to Refugee Info')
+        for _ in xrange(repeat_count):
+            for language in languages:
+                gather.play('{}/{}_language_description.wav'.format(IVR_AUDIO_PATH, language))
+    return HttpResponse(resp)
 
 
 @csrf_exempt
 def registration(request):
     # Registration Prompt
-    return HttpResponse("TwiML for registration prompt")
+    resp = twiml.Response()
+    resp.say('something')
+    return HttpResponse(resp)
 
 
 @csrf_exempt
@@ -62,4 +75,3 @@ def _get_appointment_details(registration_number):
     am_pm = appointment.date.strftime("%p")
     office_name = appointment.office.name
     return dict(office_name=office_name, date=date, am_pm=am_pm, hour=hour)
-
