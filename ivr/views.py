@@ -3,9 +3,21 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from appointment_search.models import AppointmentSchedule
 from twilio import twiml
+from collections import OrderedDict
 
 # TODO: Add S3 Bucket path
-IVR_AUDIO_PATH = ''
+IVR_AUDIO_PATH = 'ivr/audio'
+LANGUAGES = OrderedDict([
+    ('1', 'english'),
+    ('2', 'kurmanji'),
+    ('3', 'punjabi'),
+    ('4', 'dari'),
+    ('5', 'urdu'),
+    ('6', 'arabic'),
+    ('7', 'farsi'),
+    ('8', 'greek'),
+    ('9', 'sourani')
+])
 
 def time_of_day(hour):
     if hour < 12:
@@ -13,18 +25,20 @@ def time_of_day(hour):
     else:
         return 'AFTERNOON'
 
+def audio_filename(file_ending, language):
+    return '{}/{}_{}'.format(IVR_AUDIO_PATH, language, file_ending)
 
 @csrf_exempt
 def incoming(request):
     # Language Selection Menu
-    languages = ['english', 'kurmanji', 'punjabi', 'dari', 'urdu', 'arabic', 'farsi', 'greek', 'sourani']
     repeat_count = 3
     resp = twiml.Response()
     with resp.gather(numDigits=1, action='/ivr/registration') as gather:
         gather.say('Welcome to Refugee Info')
         for _ in xrange(repeat_count):
-            for language in languages:
-                gather.play('{}/{}_language_description.wav'.format(IVR_AUDIO_PATH, language))
+            for digit, language in LANGUAGES.items():
+                gather.play(audio_filename('language_description', language))
+                gather.play(audio_filename('integer_{}'.format(digit), language))
     return HttpResponse(resp)
 
 
