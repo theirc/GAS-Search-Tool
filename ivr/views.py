@@ -28,9 +28,7 @@ def time_of_day(hour):
 def audio_filename(file_ending, language):
     return '{}/{}_{}'.format(IVR_AUDIO_PATH, language, file_ending)
 
-@csrf_exempt
-def incoming(request):
-    # Language Selection Menu
+def language_selection_menu():
     repeat_count = 3
     resp = twiml.Response()
     with resp.gather(numDigits=1, action='/ivr/registration') as gather:
@@ -39,14 +37,24 @@ def incoming(request):
             for digit, language in LANGUAGES.items():
                 gather.play(audio_filename('language_description', language))
                 gather.play(audio_filename('integer_{}'.format(digit), language))
-    return HttpResponse(resp)
+    return resp
+
+@csrf_exempt
+def incoming(request):
+    # Language Selection Menu
+    return HttpResponse(language_selection_menu())
 
 
 @csrf_exempt
 def registration(request):
     # Registration Prompt
-    resp = twiml.Response()
-    resp.say('something')
+    if request.POST and 'Digits' in request.POST and request.POST['Digits'] in LANGUAGES:
+        language = LANGUAGES[request.POST['Digits']]
+        resp = twiml.Response()
+        with resp.gather(numDigits=5, action='ivr/appointment') as gather:
+            gather.play(audio_filename('registration_id_prompt', language))
+    else:
+        resp = language_selection_menu()
     return HttpResponse(resp)
 
 
