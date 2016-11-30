@@ -3,14 +3,18 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from appointment_search.models import AppointmentSchedule
-from language_utils import set_language, language_selection_menu, audio_filename, url_with_language
+from language_utils import set_language, language_selection_menu, audio_filename, numbers_in_language
 from twilio import twiml
+import urllib
 
 def time_of_day(hour):
     if hour < 12:
         return 'MORNING'
     else:
         return 'AFTERNOON'
+
+def url_with_params(url, **kwargs):
+    return '{}?{}'.format(url, urllib.urlencode(kwargs))
 
 @csrf_exempt
 def incoming(request):
@@ -23,7 +27,7 @@ def registration(request, **kwargs):
     # Registration Prompt
     language = kwargs['language']
     resp = twiml.Response()
-    with resp.gather(numDigits=5, action=url_with_language('ivr/appointment', language)) as gather:
+    with resp.gather(numDigits=5, action=url_with_params('ivr/confirmation', language=language)) as gather:
         gather.play(audio_filename('registration_id_prompt', language))
     return HttpResponse(resp)
 
@@ -33,16 +37,26 @@ def registration(request, **kwargs):
 def confirmation(request, **kwargs):
     # Confirm Registration ID
     language = kwargs['language']
+    resp = twiml.Response()
     if 'Digits' in request.POST:
-        registration_number = request.POST['Digits']
-        appointment = models.AppointmentSchedule.objects.filter(registration_number=registration_number)
-    return HttpResponse()
+        registration_code = request.POST['Digits']
+        with resp.gather(numDigits=1, action=url_with_params('ivr/appointment', language=language, registration=registration_code)) as gather:
+            gather.play(audio_filename('input_repeat', language))
+            gather.play(numbers_in_language(registration_code, language))
+            gather.play(audio_filename('input_correct', language))
+            gather.play(audio_filename('integer_1', language))
+            gather.play(audio_filename('input_incorrect', language))
+            gather.play(audio_filename('integer_2', language))
+    else:
+        resp.play(audio_filename('registration_id_error', language))
+        resp.redirect(url_with_params('ivr/registration', language=language))
+    return HttpResponse(resp)
 
 @csrf_exempt
 def appointment(request):
-    return HttpResponse("TwiML for playing back detailed appointment information")
-
-
+    if 'Digits' in request.POST and re.search('^\d{5}$', request.POST['Digits']):
+        registration_number = request.POST['Digits']
+        appointment = models.AppointmentSchedule.objects.filter(registration_number=registration_number)
 
 @csrf_exempt
 def complete_menu(request):
