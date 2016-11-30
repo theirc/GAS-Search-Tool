@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from appointment_search.models import AppointmentSchedule
 from twilio import twiml
 from collections import OrderedDict
+import urllib
 
 # TODO: Add S3 Bucket path
 IVR_AUDIO_PATH = 'ivr/audio'
@@ -25,8 +27,34 @@ def time_of_day(hour):
     else:
         return 'AFTERNOON'
 
+def set_language(view):
+    """
+    Sets the language based on language or Digits params
+    """
+    def decorated(request, *args, **kwargs):
+        if request.method != 'POST':
+            return HttpResponse(language_selection_menu())
+        elif 'language' in request.POST:
+            language = request.POST['language']
+            if language in LANGUAGES.values():
+                kwargs['language'] = language
+                return view(request, *args, **kwargs)
+            else:
+                return HttpResponse(language_selection_menu())
+        elif 'Digits' in request.POST and request.POST['Digits'] in LANGUAGES:
+            kwargs['language'] = LANGUAGES[request.POST['Digits']]
+            return view(request, *args, **kwargs)
+        else:
+            return HttpResponse(language_selection_menu())
+    decorated.__doc__ = view.__doc__
+    decorated.__name__ = view.__name__
+    return decorated
+
 def audio_filename(file_ending, language):
     return '{}/{}_{}'.format(IVR_AUDIO_PATH, language, file_ending)
+
+def url_with_language(url, language):
+    return '{}?{}'.format(url, urllib.urlencode({'language': language}))
 
 def language_selection_menu():
     repeat_count = 3
@@ -46,21 +74,30 @@ def incoming(request):
 
 
 @csrf_exempt
-def registration(request):
+@set_language
+def registration(request, **kwargs):
     # Registration Prompt
-    if request.POST and 'Digits' in request.POST and request.POST['Digits'] in LANGUAGES:
-        language = LANGUAGES[request.POST['Digits']]
-        resp = twiml.Response()
-        with resp.gather(numDigits=5, action='ivr/appointment') as gather:
-            gather.play(audio_filename('registration_id_prompt', language))
-    else:
-        resp = language_selection_menu()
+    language = kwargs['language']
+    resp = twiml.Response()
+    with resp.gather(numDigits=5, action=url_with_language('ivr/appointment', language)) as gather:
+        gather.play(audio_filename('registration_id_prompt', language))
     return HttpResponse(resp)
 
+@csrf_exempt
+@set_language
+@require_POST
+def confirmation(request, **kwargs):
+    # Confirm Registration ID
+    language = kwargs['language']
+    if 'Digits' in request.POST:
+        registration_number = request.POST['Digits']
+        appointment = models.AppointmentSchedule.objects.filter(registration_number=registration_number)
+    return HttpResponse()
 
 @csrf_exempt
 def appointment(request):
     return HttpResponse("TwiML for playing back detailed appointment information")
+
 
 
 @csrf_exempt
