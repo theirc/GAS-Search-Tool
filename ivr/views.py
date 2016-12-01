@@ -7,6 +7,13 @@ from language_utils import set_language, language_selection_menu, audio_filename
 from twilio import twiml
 import urllib
 
+OFFICE_NAME_TO_SHORTHAND = {
+    'Alimos Asylum Unit': 'alimos',
+    'Attica Regional Asylum Office': 'attica',
+    'Piraeus Asylum Unit': 'piraeus',
+    'Thessaloniki Regional Asylum Office': 'thessaloniki'
+}
+
 def time_of_day(hour):
     if hour < 12:
         return 'MORNING'
@@ -37,9 +44,9 @@ def registration(request, **kwargs):
 def confirmation(request, **kwargs):
     # Confirm Registration ID
     language = kwargs['language']
-    resp = twiml.Response()
     if 'Digits' in request.POST:
         registration_code = request.POST['Digits']
+        resp = twiml.Response()
         with resp.gather(numDigits=1, action=url_with_params('ivr/appointment', language=language, registration=registration_code)) as gather:
             gather.play(audio_filename('input_repeat', language))
             for file in  numbers_in_language(registration_code, language):
@@ -48,48 +55,53 @@ def confirmation(request, **kwargs):
             gather.play(audio_filename('integer_1', language))
             gather.play(audio_filename('input_incorrect', language))
             gather.play(audio_filename('integer_2', language))
+        return HttpResponse(resp)
     else:
-        resp.play(audio_filename('registration_id_error', language))
-        resp.redirect(url_with_params('ivr/registration', language=language))
-    return HttpResponse(resp)
+        _appointment_error(language)
 
 @csrf_exempt
-def appointment(request):
-    if 'Digits' in request.POST and re.search('^\d{5}$', request.POST['Digits']):
-        registration_number = request.POST['Digits']
-        appointment = models.AppointmentSchedule.objects.filter(registration_number=registration_number)
+@set_language
+@require_POST
+def appointment(request, **kwargs):
+    language = kwargs['language']
+    if 'Digits' in request.POST and request.POST['Digits'] == '1' and 'registration' in request.POST:
+        return _check_appointment(request.POST['registration'], kwargs['language'])
+    else:
+        return registration(request, **kwargs)
 
 @csrf_exempt
 def complete_menu(request):
     return HttpResponse("TwiML for redirect based on selection")
 
-# This is a test method to demon how to retrieve the appointment details for existing dal layer
-@csrf_exempt
-def test(request):
-    registration_number = request.POST.get('registration_number')
-    appointment_details = _get_appointment_details(registration_number)
+def _check_appointment(registration_code, language):
+    appointment_details = _get_appointment_details(registration_code)
+    if appointment_details:
+        resp = twiml.Response()
+        resp.play(audio_filename('appointment_scheduled', language))
+        resp.play(audio_filename('integer_{}'.format(appointment_details['hour']), language))
+        resp.play(audio_filename('integer_{}'.format(appointment_details['minute']), language))
+        resp.play(audio_filename('time_{}'.format(appointment_details['am_pm']), language))
+        resp.play(audio_filename('loc_{}'.format(appointment_details['office_name']), language))
+        return HttpResponse(resp)
+    else:
+        return _appointment_error(language)
 
-    # TODO: Below is just place holder TWIML and will be replaced by IRS flow
-    response_str = """
-        <Response>
-            <Say>Here is the appointment reminder for registration number {}.
-            Your appointment will be located at {}, on {}, at {} {}  </Say>
-        </Response>
-    """.format(registration_number,
-               appointment_details['office_name'],
-               appointment_details['date'],
-               appointment_details['hour'],
-               appointment_details['am_pm'])
-
-    return HttpResponse(response_str)
-
+def _appointment_error(language):
+    resp = twiml.Response()
+    resp.play(audio_filename('registration_id_error', language))
+    resp.redirect(url_with_params('ivr/registration', language=language))
+    return HttpResponse(resp)
 
 def _get_appointment_details(registration_number):
     appointments = AppointmentSchedule.objects.filter(registration_number=registration_number)
+    if not appointments:
+        return False
     appt = appointments[0]
     datetime = appt.date
-    date = datetime.strftime('%d-%m-%Y')
-    hour = datetime.strftime("%H:%M")
-    am_pm = appointment.date.strftime("%p")
-    office_name = appointment.office.name
-    return dict(office_name=office_name, date=date, am_pm=am_pm, hour=hour)
+    month = datetime.strftime('%B')
+    day = datetime.strftime('%d')
+    hour = datetime.strftime("%H")
+    minute = datetime.strftime("%M")
+    am_pm = appt.date.strftime("%p")
+    office_name = OFFICE_NAME_TO_SHORTHAND[appt.office.name]
+    return dict(office_name=office_name, month=month, day=day, am_pm=am_pm, hour=hour, minute=minute)
