@@ -42,7 +42,8 @@ def confirmation(request, **kwargs):
         registration_code = request.POST['Digits']
         with resp.gather(numDigits=1, action=url_with_params('ivr/appointment', language=language, registration=registration_code)) as gather:
             gather.play(audio_filename('input_repeat', language))
-            gather.play(numbers_in_language(registration_code, language))
+            for file in  numbers_in_language(registration_code, language):
+                gather.play(file)
             gather.play(audio_filename('input_correct', language))
             gather.play(audio_filename('integer_1', language))
             gather.play(audio_filename('input_incorrect', language))

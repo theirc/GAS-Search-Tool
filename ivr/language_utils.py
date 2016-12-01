@@ -58,6 +58,10 @@ def audio_filename(file_ending, language):
 def url_with_language(url, language):
     return '{}?{}'.format(url, urllib.urlencode({'language': language}))
 
+# split multiple a number into multiple audio files to play a number in any language
+# returns an array of file names
 def numbers_in_language(number_string, language):
-    # TODO: spit multiple audio files to say a number in any language
-    return number_string
+    files = []
+    for digit in number_string:
+        files.append(audio_filename('integer_{}'.format(digit), language))
+    return files
