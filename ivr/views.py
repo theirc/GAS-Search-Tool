@@ -72,8 +72,20 @@ def appointment(request, **kwargs):
 @csrf_exempt
 @set_language
 @require_POST
-def complete_menu(request):
-    return HttpResponse("TwiML for redirect based on selection")
+def complete_menu(request, **kwargs):
+    language = kwargs['language']
+    if 'Digits' not in request.POST:
+        return _appointment_error(language)
+    elif request.POST['Digits'] == '2':
+        return registration(request, **kwargs)
+    elif request.POST['Digits'] == '3':
+        resp = twiml.Response()
+        resp.play(audio_filename('finish', language))
+        resp.hangup()
+        return HttpResponse(resp)
+    else:
+        # default or 1 to repeat appointment
+        return _check_appointment(request.POST['registration'], kwargs['language'])
 
 def _check_appointment(registration_code, language):
     appointment_details = _get_appointment_details(registration_code)
