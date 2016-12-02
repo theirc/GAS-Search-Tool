@@ -70,6 +70,8 @@ def appointment(request, **kwargs):
         return registration(request, **kwargs)
 
 @csrf_exempt
+@set_language
+@require_POST
 def complete_menu(request):
     return HttpResponse("TwiML for redirect based on selection")
 
@@ -78,10 +80,19 @@ def _check_appointment(registration_code, language):
     if appointment_details:
         resp = twiml.Response()
         resp.play(audio_filename('appointment_scheduled', language))
+        resp.play(audio_filename('month_{}'.format(appointment_details['month']), language))
+        resp.play(audio_filename('integer_{}'.format(appointment_details['day']), language))
         resp.play(audio_filename('integer_{}'.format(appointment_details['hour']), language))
         resp.play(audio_filename('integer_{}'.format(appointment_details['minute']), language))
         resp.play(audio_filename('time_{}'.format(appointment_details['am_pm']), language))
         resp.play(audio_filename('loc_{}'.format(appointment_details['office_name']), language))
+        with resp.gather(numDigits=1, action=url_with_params('ivr/complete_menu', language=language, registration=registration_code)) as gather:
+            gather.play(audio_filename('end_menu_repeat', language))
+            gather.play(audio_filename('integer_1', language))
+            gather.play(audio_filename('end_menu_restart', language))
+            gather.play(audio_filename('integer_2', language))
+            gather.play(audio_filename('end_menu_finish', language))
+            gather.play(audio_filename('integer_3', language))
         return HttpResponse(resp)
     else:
         return _appointment_error(language)
