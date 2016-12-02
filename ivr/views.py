@@ -28,7 +28,21 @@ def incoming(request):
     # Language Selection Menu
     return HttpResponse(language_selection_menu())
 
+def start_over_on_star(view):
+    """
+    Dectorator to start over if * was pressed
+    """
+    def decorated(request, *args, **kwargs):
+        if request.method == 'POST' and 'Digits' in request.POST and request.POST['Digits'] == '*':
+            return HttpResponse(language_selection_menu())
+        else:
+            return view(request, *args, **kwargs)
+    decorated.__doc__ = view.__doc__
+    decorated.__name__ = view.__name__
+    return decorated
+
 @csrf_exempt
+@start_over_on_star
 @set_language
 def registration(request, **kwargs):
     # Registration Prompt
@@ -39,6 +53,7 @@ def registration(request, **kwargs):
     return HttpResponse(resp)
 
 @csrf_exempt
+@start_over_on_star
 @set_language
 @require_POST
 def confirmation(request, **kwargs):
@@ -60,6 +75,7 @@ def confirmation(request, **kwargs):
         _appointment_error(language)
 
 @csrf_exempt
+@start_over_on_star
 @set_language
 @require_POST
 def appointment(request, **kwargs):
@@ -70,6 +86,7 @@ def appointment(request, **kwargs):
         return registration(request, **kwargs)
 
 @csrf_exempt
+@start_over_on_star
 @set_language
 @require_POST
 def complete_menu(request, **kwargs):
