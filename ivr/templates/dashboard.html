@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Link to the Bootstrap CSS from a CDN -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+          rel="stylesheet">
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">IVR Dashboard</h3>
+      </div>
+      <hr />
+       <div class="row">
+         <p>So far, {{number_calls}} number of calls has been placed to ICR</p>
+         <!--
+              'time' is a context variable passed from Django's view.
+              The template tag with set brackets is used to print the value of the variable
+              within the tag. Here, the value of the context variable
+              'time' is rendered.
+         -->
+         <p>
+           Current server time at the time of rendering the template is
+           {{ time }}. This was passed as a context variable from the
+           server-side view. You can pass as many variables as you want
+           in a dictionary.
+         </p>
+       </div>
+    </div>
+<table id="t01">
+  <tr>
+    <th>From Number</th>
+    <th>Time Called</th> 
+    <th>Caller Locality</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>80</td>
+  </tr>
+</table>
+<br>
+
+  </body>
+</html>
+
