@@ -6,6 +6,8 @@ from appointment_search.models import AppointmentSchedule
 from language_utils import set_language, language_selection_menu, audio_filename, numbers_in_language
 from twilio import twiml
 import urllib
+import datetime
+from twilio.rest import TwilioRestClient
 
 OFFICE_NAME_TO_SHORTHAND = {
     'Alimos Asylum Unit': 'alimos',
@@ -13,6 +15,15 @@ OFFICE_NAME_TO_SHORTHAND = {
     'Piraeus Asylum Unit': 'piraeus',
     'Thessaloniki Regional Asylum Office': 'thessaloniki'
 }
+
+
+#TODO Change to Twilio_Org account credentials
+ACCOUNT_SID = "ACaff9c1a667f2cd1d36df032632a4852d"
+AUTH_TOKEN = "1a5c0ded8409b31c2639813bfce1c303"
+GREEK_NUMBER = "+302611180999"
+
+client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+
 
 def time_of_day(hour):
     if hour < 12:
@@ -27,6 +38,13 @@ def url_with_params(url, **kwargs):
 def incoming(request):
     # Language Selection Menu
     return HttpResponse(language_selection_menu())
+
+@csrf_exempt
+def dashboard(request):
+    calls = client.calls.list(page_size=1000, to=GREEK_NUMBER)
+    context = {'time': datetime.datetime.now(), 'number_calls': len(calls), 'calls': list(calls)}
+    return render(request, "admin/ivr_dashboard.html", context)
+
 
 def start_over_on_star(view):
     """

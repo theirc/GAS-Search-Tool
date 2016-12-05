@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Link to the Bootstrap CSS from a CDN -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+          rel="stylesheet">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table#t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        table#t01 th {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h3 class="text-muted">IVR Dashboard</h3>
+    </div>
+    <hr/>
+    <div class="row">
+        <p align="center" style="font-family:verdana;color:blue;">Currently as of {{ time }}, {{number_calls}} number of calls has been placed to the  Greek Asylum Service.
+        </p>
+    </div>
+</div>
+<table id="t01" align="center">
+    <tr>
+        <th>From Number</th>       
+        <th>Time Called</th>           
+        <th>Caller Name</th>
+    </tr>
+    {% for obj in calls %}
+            <tr>
+                <td>
+                    {{ obj.from_formatted}}
+                </td>
+                <td>
+                    {{ obj.date_created }}
+                </td>
+                <td>
+                    {{ obj.caller_name }}
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+<br>
+</body>
+</html>
+

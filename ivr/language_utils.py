@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import urllib
 
 # TODO: Add S3 Bucket path
-IVR_AUDIO_PATH = 'ivr/audio'
+IVR_AUDIO_PATH = 'audio'
 
 LANGUAGES = OrderedDict([
     ('1', 'english'),
