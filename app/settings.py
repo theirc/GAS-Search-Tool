@@ -151,6 +151,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', '')
+TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', '')
+TWILIO_GREEK_NUMBER = os.environ.get('TWILIO_GREEK_NUMBER', "+302611180999")
+
 
 if 'DATABASE_URL' in os.environ:
     # Parse database configuration from $DATABASE_URL

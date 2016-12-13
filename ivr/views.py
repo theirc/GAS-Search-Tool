@@ -8,6 +8,8 @@ from twilio import twiml
 import urllib
 import datetime
 from twilio.rest import TwilioRestClient
+from django.conf import settings
+
 
 OFFICE_NAME_TO_SHORTHAND = {
     'Alimos Asylum Unit': 'alimos',
@@ -18,9 +20,9 @@ OFFICE_NAME_TO_SHORTHAND = {
 
 
 #TODO Change to Twilio_Org account credentials
-ACCOUNT_SID = "ACaff9c1a667f2cd1d36df032632a4852d"
-AUTH_TOKEN = "1a5c0ded8409b31c2639813bfce1c303"
-GREEK_NUMBER = "+302611180999"
+ACCOUNT_SID = settings.TWILIO_ACCOUNT_SID
+AUTH_TOKEN = settings.TWILIO_AUTH_TOKEN
+GREEK_NUMBER = settings.TWILIO_GREEK_NUMBER
 
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
