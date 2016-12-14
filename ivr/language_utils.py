@@ -3,20 +3,20 @@ from twilio import twiml
 from django.http import HttpResponse
 import urllib
 
-# TODO: Add S3 Bucket path
-IVR_AUDIO_PATH = 'audio'
+IVR_AUDIO_PATH = ' https://s3.amazonaws.com/eu-twilio'
 
 LANGUAGES = OrderedDict([
-    ('1', 'english'),
-    ('2', 'kurmanji'),
-    ('3', 'punjabi'),
-    ('4', 'dari'),
-    ('5', 'urdu'),
-    ('6', 'arabic'),
-    ('7', 'farsi'),
-    ('8', 'greek'),
-    ('9', 'sourani')
+    ('1', 'English'),
+    ('2', 'Kurmanji'),
+    ('3', 'Punjabi'),
+    ('4', 'Dari'),
+    ('5', 'Urdu'),
+    ('6', 'Arabic'),
+    ('7', 'Farsi'),
+    ('8', 'Greek'),
+    ('9', 'Sourani')
 ])
+
 
 def set_language(view):
     """
@@ -41,6 +41,7 @@ def set_language(view):
     decorated.__name__ = view.__name__
     return decorated
 
+
 def language_selection_menu():
     repeat_count = 3
     resp = twiml.Response()
@@ -52,11 +53,14 @@ def language_selection_menu():
                 gather.play(audio_filename('integer_{}'.format(digit), language))
     return resp
 
+
 def audio_filename(file_ending, language):
-    return '{}/{}_{}'.format(IVR_AUDIO_PATH, language, file_ending)
+    return '{}/{}/{}_{}'.format(IVR_AUDIO_PATH, language, language, file_ending)
+
 
 def url_with_language(url, language):
     return '{}?{}'.format(url, urllib.urlencode({'language': language}))
+
 
 # split multiple a number into multiple audio files to play a number in any language
 # returns an array of file names
