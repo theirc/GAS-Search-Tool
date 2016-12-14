@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ui',
     'corsheaders',
     'widget_tweaks',
+    'ivr',
 ]
 
 MIDDLEWARE = [

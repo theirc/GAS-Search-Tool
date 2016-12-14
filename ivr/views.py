@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from appointment_search.models import AppointmentSchedule
 from language_utils import set_language, language_selection_menu, audio_filename, numbers_in_language
+from models import Metric
 from twilio import twiml
 import urllib
 import datetime
@@ -36,9 +37,14 @@ def time_of_day(hour):
 def url_with_params(url, **kwargs):
     return '{}?{}'.format(url, urllib.urlencode(kwargs))
 
+def record_metric(event_name, request, language='', registration_id=''):
+    if 'From' in request.POST:
+        Metric(event=event_name, phone=request.POST['From'], language=language, registration_id=registration_id).save()
+
 @csrf_exempt
 def incoming(request):
     # Language Selection Menu
+    record_metric('incoming', request)
     return HttpResponse(language_selection_menu())
 
 @csrf_exempt
@@ -67,6 +73,7 @@ def start_over_on_star(view):
 def registration(request, **kwargs):
     # Registration Prompt
     language = kwargs['language']
+    record_metric('language_set', request, language)
     resp = twiml.Response()
     with resp.gather(numDigits=5, action=url_with_params('ivr/confirmation', language=language)) as gather:
         gather.play(audio_filename('registration_id_prompt', language))
@@ -92,7 +99,7 @@ def confirmation(request, **kwargs):
             gather.play(audio_filename('integer_2', language))
         return HttpResponse(resp)
     else:
-        _appointment_error(language)
+        return _appointment_error(language)
 
 @csrf_exempt
 @start_over_on_star
@@ -101,7 +108,7 @@ def confirmation(request, **kwargs):
 def appointment(request, **kwargs):
     language = kwargs['language']
     if 'Digits' in request.POST and request.POST['Digits'] == '1' and 'registration' in request.POST:
-        return _check_appointment(request.POST['registration'], kwargs['language'])
+        return _check_appointment(request.POST['registration'], kwargs['language'], request)
     else:
         return registration(request, **kwargs)
 
@@ -124,9 +131,10 @@ def complete_menu(request, **kwargs):
         # default or 1 to repeat appointment
         return _check_appointment(request.POST['registration'], kwargs['language'])
 
-def _check_appointment(registration_code, language):
+def _check_appointment(registration_code, language, request):
     appointment_details = _get_appointment_details(registration_code)
     if appointment_details:
+        record_metric('valid_id_entered', request, language, registration_code)
         resp = twiml.Response()
         resp.play(audio_filename('appointment_scheduled', language))
         resp.play(audio_filename('month_{}'.format(appointment_details['month']), language))
@@ -144,6 +152,7 @@ def _check_appointment(registration_code, language):
             gather.play(audio_filename('integer_3', language))
         return HttpResponse(resp)
     else:
+        record_metric('invalid_id_entered', request, language, registration_code)
         return _appointment_error(language)
 
 def _appointment_error(language):
