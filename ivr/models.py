@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from language_utils import LANGUAGES
 from django.db import models
 
+
 class Metric(models.Model):
     event = models.CharField(max_length=30)
     language = models.CharField(max_length=1, choices=LANGUAGES.items(), blank=True)

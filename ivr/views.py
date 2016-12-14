@@ -30,24 +30,29 @@ if ACCOUNT_SID and AUTH_TOKEN:
 else:
     client = None
 
+
 def time_of_day(hour):
     if hour < 12:
         return 'MORNING'
     else:
         return 'AFTERNOON'
 
+
 def url_with_params(url, **kwargs):
     return '{}?{}'.format(url, urllib.urlencode(kwargs))
+
 
 def record_metric(event_name, request, language='', registration_id=''):
     if 'From' in request.POST:
         Metric(event=event_name, phone=request.POST['From'], language=language, registration_id=registration_id).save()
+
 
 @csrf_exempt
 def incoming(request):
     # Language Selection Menu
     record_metric('incoming', request)
     return HttpResponse(language_selection_menu())
+
 
 @csrf_exempt
 def dashboard(request):
@@ -72,6 +77,7 @@ def start_over_on_star(view):
     decorated.__name__ = view.__name__
     return decorated
 
+
 @csrf_exempt
 @start_over_on_star
 @set_language
@@ -83,6 +89,7 @@ def registration(request, **kwargs):
     with resp.gather(numDigits=5, action=url_with_params('ivr/confirmation', language=language)) as gather:
         gather.play(audio_filename('registration_id_prompt', language))
     return HttpResponse(resp)
+
 
 @csrf_exempt
 @start_over_on_star
@@ -106,16 +113,17 @@ def confirmation(request, **kwargs):
     else:
         return _appointment_error(language)
 
+
 @csrf_exempt
 @start_over_on_star
 @set_language
 @require_POST
 def appointment(request, **kwargs):
-    language = kwargs['language']
     if 'Digits' in request.POST and request.POST['Digits'] == '1' and 'registration' in request.POST:
         return _check_appointment(request.POST['registration'], kwargs['language'], request)
     else:
         return registration(request, **kwargs)
+
 
 @csrf_exempt
 @start_over_on_star
@@ -135,6 +143,7 @@ def complete_menu(request, **kwargs):
     else:
         # default or 1 to repeat appointment
         return _check_appointment(request.POST['registration'], kwargs['language'])
+
 
 def _check_appointment(registration_code, language, request):
     appointment_details = _get_appointment_details(registration_code)
@@ -160,11 +169,13 @@ def _check_appointment(registration_code, language, request):
         record_metric('invalid_id_entered', request, language, registration_code)
         return _appointment_error(language)
 
+
 def _appointment_error(language):
     resp = twiml.Response()
     resp.play(audio_filename('registration_id_error', language))
     resp.redirect(url_with_params('ivr/registration', language=language))
     return HttpResponse(resp)
+
 
 def _get_appointment_details(registration_number):
     appointments = AppointmentSchedule.objects.filter(registration_number=registration_number)
