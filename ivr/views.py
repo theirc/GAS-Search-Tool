@@ -25,8 +25,10 @@ ACCOUNT_SID = settings.TWILIO_ACCOUNT_SID
 AUTH_TOKEN = settings.TWILIO_AUTH_TOKEN
 GREEK_NUMBER = settings.TWILIO_GREEK_NUMBER
 
-client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
-
+if ACCOUNT_SID and AUTH_TOKEN:
+    client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+else:
+    client = None
 
 def time_of_day(hour):
     if hour < 12:
@@ -49,9 +51,12 @@ def incoming(request):
 
 @csrf_exempt
 def dashboard(request):
-    calls = client.calls.list(page_size=1000, to=GREEK_NUMBER)
-    context = {'time': datetime.datetime.now(), 'number_calls': len(calls), 'calls': list(calls)}
-    return render(request, "admin/ivr_dashboard.html", context)
+    if client:
+        calls = client.calls.list(page_size=1000, to=GREEK_NUMBER)
+        context = {'time': datetime.datetime.now(), 'number_calls': len(calls), 'calls': list(calls)}
+        return render(request, "admin/ivr_dashboard.html", context)
+    else:
+        return HttpResponse('<h1>System Error</h1><h4>Twilio Client Not Configured.</h4>')
 
 
 def start_over_on_star(view):
