@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import urllib
 
 IVR_AUDIO_PATH = ' https://s3.amazonaws.com/eu-twilio'
+AUDIO_FORMAT = 'wav'
 
 LANGUAGES = OrderedDict([
     ('1', 'English'),
@@ -55,7 +56,7 @@ def language_selection_menu():
 
 
 def audio_filename(file_ending, language):
-    return '{}/{}/{}_{}'.format(IVR_AUDIO_PATH, language, language, file_ending)
+    return '{}/{}/{}_{}.{}'.format(IVR_AUDIO_PATH, language, language, file_ending, AUDIO_FORMAT)
 
 
 def url_with_language(url, language):
