@@ -17,7 +17,8 @@ LANGUAGES = OrderedDict([
     ('8', 'Greek'),
     ('9', 'Sourani')
 ])
-
+DISABLED_LANGUAGES = ['Greek', 'Sourani', 'Dari', 'Kurmanji', 'Farsi']
+SUPPORTED_LANGUAGES = { k: v for k, v in LANGUAGES.items() if v not in DISABLED_LANGUAGES }
 
 def set_language(view):
     """
@@ -49,7 +50,7 @@ def language_selection_menu():
     with resp.gather(numDigits=1, action='/ivr/registration') as gather:
         gather.say('Welcome to Refugee Info')
         for _ in xrange(repeat_count):
-            for digit, language in LANGUAGES.items():
+            for digit, language in SUPPORTED_LANGUAGES.items():
                 gather.play(audio_filename('language_description', language))
                 gather.play(audio_filename('integer_{}'.format(digit), language))
     return resp
