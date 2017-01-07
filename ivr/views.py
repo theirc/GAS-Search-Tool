@@ -39,7 +39,7 @@ def time_of_day(hour):
 
 
 def url_with_params(url, **kwargs):
-    return '{}?{}'.format(url, urllib.urlencode(kwargs))
+    return '/{}?{}'.format(url, urllib.urlencode(kwargs))
 
 
 def record_metric(event_name, request, language='', registration_id=''):
