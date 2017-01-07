@@ -25,10 +25,8 @@ def set_language(view):
     Dectorator to set the language based on language or Digits params
     """
     def decorated(request, *args, **kwargs):
-        if request.method != 'POST':
-            return HttpResponse(language_selection_menu())
-        elif 'language' in request.POST:
-            language = request.POST['language']
+        if 'language' in request.GET:
+            language = request.GET['language']
             if language in LANGUAGES.values():
                 kwargs['language'] = language
                 return view(request, *args, **kwargs)
