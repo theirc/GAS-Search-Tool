@@ -39,7 +39,7 @@ def time_of_day(hour):
 
 
 def url_with_params(url, **kwargs):
-    return '{}?{}'.format(url, urllib.urlencode(kwargs))
+    return '/{}?{}'.format(url, urllib.urlencode(kwargs))
 
 
 def record_metric(event_name, request, language='', registration_id=''):
@@ -119,8 +119,8 @@ def confirmation(request, **kwargs):
 @set_language
 @require_POST
 def appointment(request, **kwargs):
-    if 'Digits' in request.POST and request.POST['Digits'] == '1' and 'registration' in request.POST:
-        return _check_appointment(request.POST['registration'], kwargs['language'], request)
+    if 'Digits' in request.POST and request.POST['Digits'] == '1' and 'registration' in request.GET:
+        return _check_appointment(request.GET['registration'], kwargs['language'], request)
     else:
         return registration(request, **kwargs)
 
