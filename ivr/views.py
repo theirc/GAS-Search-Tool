@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from appointment_search.models import AppointmentSchedule
-from language_utils import set_language, language_selection_menu, audio_filename, numbers_in_language
+from language_utils import set_language, language_selection_menu, audio_filename, numbers_in_language,LANGUAGES
 from models import Metric
 from twilio import twiml
 import urllib
@@ -58,7 +58,31 @@ def incoming(request):
 def dashboard(request):
     if client:
         calls = client.calls.list(page_size=1000, to=GREEK_NUMBER)
-        context = {'time': datetime.datetime.now(), 'number_calls': len(calls), 'calls': list(calls)}
+        valid_ids = Metric.objects.filter(event='valid_id_entered')
+        valid_count= 0
+
+        if valid_ids:
+            valid_count = len(valid_ids)
+
+        invalid_count = 0
+        invalid_ids = Metric.objects.filter(event='invalid_id_entered')
+        if invalid_ids:
+            invalid_count = len(invalid_ids)
+
+        language_metrics = {}
+        for language in LANGUAGES.itervalues():
+            language_metric = Metric.objects.filter(language=language)
+            if language_metric:
+                language_metrics[language] = len(language_metric)
+            else:
+                language_metrics[language] = 0
+
+        context = {'time': datetime.datetime.now(),
+                   'number_calls': len(calls),
+                   'calls': list(calls),
+                   'valid_ids': valid_count,
+                   'invalid_ids' : invalid_count,
+                   'language_set':language_metrics}
         return render(request, "admin/ivr_dashboard.html", context)
     else:
         return HttpResponse('<h1>System Error</h1><h4>Twilio Client Not Configured.</h4>')

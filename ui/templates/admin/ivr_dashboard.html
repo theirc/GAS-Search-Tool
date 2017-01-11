@@ -25,6 +25,9 @@
             background-color: black;
             color: white;
         }
+        caption {
+            caption-side: bottom;
+}       }
     </style>
 </head>
 <body>
@@ -37,7 +40,32 @@
         <p align="center" style="font-family:verdana;color:blue;">Currently as of {{ time }}, {{number_calls}} number of calls has been placed to the  Greek Asylum Service.
         </p>
     </div>
+
+     <div class="row">
+       <p align="center" style="font-family:verdana;color:black;">Total Valid Registration Ids : {{valid_ids}} </p>
+      </div>
+
+      <div class="row">
+       <p align="center" style="font-family:verdana;color:black;">Total Invalid Registration Ids : {{invalid_ids}} </p>
+      </div>
+
+
+   <table id="t02" align="center">
+       <caption>Number of Calls Per Language </caption>
+       <tr>   
+          {% for key, value in language_set.items %}
+            <th>{{key}}</th>
+          {% endfor %}
+       </tr>
+       <tr>
+           {% for key, value in language_set.items %}
+            <td>{{value}}</td>
+           {% endfor %}
+       </tr>
+   </table>
+
 </div>
+
 <table id="t01" align="center">
     <tr>
         <th>From Number</th>       
