@@ -17,7 +17,7 @@ LANGUAGES = OrderedDict([
     ('8', 'Greek'),
     ('9', 'Sourani')
 ])
-DISABLED_LANGUAGES = ['Greek', 'Sourani', 'Dari', 'Kurmanji', 'Farsi']
+DISABLED_LANGUAGES = ['Greek']
 SUPPORTED_LANGUAGES = { k: v for k, v in LANGUAGES.items() if v not in DISABLED_LANGUAGES }
 
 def set_language(view):
