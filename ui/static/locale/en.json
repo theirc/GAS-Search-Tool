@@ -35,6 +35,17 @@
   "NUMBERS_DONT_MATCH": "Numbers don't match",
   "INVALID_NUMBER": "Registration number not found",
 
-  "UPDATE_DATA_INFO_1": "<strong>This tool is designed to facilitate the provision of information on registration appointments with the Greek Asylum Service. </strong><br /><br /> If your phone number or address change, you need to email the Asylum Service at",
-  "UPDATE_DATA_INFO_2": "This is very important, because the authorities need to contact you to tell you when to come to the Regional Asylum Office. You need to include your name, date of birth, registration number, new phone number and your new address in this email, in English or Greek.​<br /><br /> The information used in this tool is obtained from the registration appointment lists provided by the Greek Asylum Service."
+  "SEARCH_INFO_1": "<strong>Thank you for visiting the Search Tool. We aren't adding Full Registration appointment information to the Search Tool right now.</strong><br /><br />",
+  "SEARCH_INFO_2": "To contact the Greek Asylum Service about your appointment, you can:<br />",
+  "SEARCH_INFO_3": "Try calling the Asylum Service question line, available Monday through Friday between 2 p.m. and 3 p.m.: ",
+  "SEARCH_INFO_4": "Or visit an",
+  "SEARCH_INFO_4_ASYLUM_OFFICE": "Asylum Office",
+  "SEARCH_INFO_5": "<br /><br />If you have ",
+  "SEARCH_INFO_5_PRE_REGISTERED": "pre-registered",
+  "SEARCH_INFO_6": "on the Greek mainland, the date of your Full Registration appointment should be written on your card.",
+  "SEARCH_INFO_7": "If your phone number or address has changed, you need to email the Asylum Service at ",
+  "SEARCH_INFO_8": "in English or Greek.",
+  "SEARCH_INFO_9": "Include your name, date of birth, registration number, and new phone number and/or address.",
+  "SEARCH_INFO_10": "If you need legal help, find an organization ",
+  "SEARCH_INFO_10_HERE": "here"
 }

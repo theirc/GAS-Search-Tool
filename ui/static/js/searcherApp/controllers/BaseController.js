@@ -37,10 +37,9 @@ angular.module('searcherApp').controller('BaseController', function ($rootScope,
 
     vm.getDirection = function () {
         return vm.isRTL ? 'rtl' : 'ltr'
-    }
+    };
 
     $rootScope.translateToHtml = function(value) {
-      console.log($translate.instant(value));
         // Defaults to treating trusted text as `html`
         return $sce.trustAsHtml($translate.instant(value));
     };
